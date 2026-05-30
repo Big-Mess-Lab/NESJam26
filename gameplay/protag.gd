@@ -13,6 +13,8 @@ var current_facing: Facing = Facing.DOWN
 var current_sword: Sword = Sword.DOWN
 var show_sword: bool = false
 var move_aim_mode: bool = true
+func _ready():
+	_update_facing(Facing.DOWN)
 
 func _input(event: InputEvent):
 	# Change sword/face mode

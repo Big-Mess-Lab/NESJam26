@@ -15,6 +15,14 @@ run/main_scene="uid://dlacpxe7xr5em"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=256
+window/size/viewport_height=240
+window/stretch/aspect="expand"
+window/stretch/scale=2.0
+window/stretch/scale_mode="integer"
+
 [file_customization]
 
 folder_colors={
@@ -83,6 +91,7 @@ start={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
