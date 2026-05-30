@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://dlacpxe7xr5em"]
 
-[ext_resource type="PackedScene" uid="uid://1ip0vr8umpa0" path="res://gameplay/protag.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://m3qwdbkwitwj" path="res://gameplay/rooms/room_DEBUG.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://1ip0vr8umpa0" path="res://gameplay/protag/protag.tscn" id="1_ig7tw"]
 
 [node name="Node2D" type="Node2D" unique_id=1774498275]
 
-[node name="Protag" parent="." unique_id=1526074758 instance=ExtResource("1_ig7tw")]
-position = Vector2(128, 120)
+[node name="RoomDebug" parent="." unique_id=1962429657 instance=ExtResource("1_0xm2m")]
+
+[node name="Protag" parent="RoomDebug" unique_id=1526074758 instance=ExtResource("1_ig7tw")]
+position = Vector2(120, 120)
