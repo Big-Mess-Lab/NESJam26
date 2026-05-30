@@ -10,5 +10,16 @@ active_room = NodePath("RoomDebug")
 
 [node name="RoomDebug" parent="." unique_id=1962429657 instance=ExtResource("2_veu2m")]
 
+[node name="Portal" parent="RoomDebug/Objects" parent_id_path=PackedInt32Array(1962429657, 906171461) index="0" unique_id=2007719183 node_paths=PackedStringArray("destination")]
+destination = NodePath("../../../RoomDebug2/Objects/Destination")
+interact_direction = 3
+
 [node name="RoomDebug2" parent="." unique_id=381672016 instance=ExtResource("3_ljimd")]
 position = Vector2(256, 0)
+
+[node name="Portal" parent="RoomDebug2/Objects" parent_id_path=PackedInt32Array(381672016, 365833505) index="0" unique_id=2007719183 node_paths=PackedStringArray("destination")]
+destination = NodePath("../../../RoomDebug/Objects/Destination")
+interact_direction = 2
+
+[editable path="RoomDebug"]
+[editable path="RoomDebug2"]
