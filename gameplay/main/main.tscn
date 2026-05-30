@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dlacpxe7xr5em"]
+
+[ext_resource type="Script" uid="uid://ulk60h114cwi" path="res://gameplay/main/main.gd" id="1_rsott"]
+[ext_resource type="PackedScene" uid="uid://cmftho2cy6t7r" path="res://gameplay/floors_and_rooms/floor_DEBUG/floor_DEBUG.tscn" id="2_c201j"]
+
+[node name="Main" type="Node" unique_id=1785130260]
+script = ExtResource("1_rsott")
+
+[node name="FloorDebug" parent="." unique_id=540239988 instance=ExtResource("2_c201j")]

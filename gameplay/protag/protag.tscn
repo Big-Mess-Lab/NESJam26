@@ -153,13 +153,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kgp5"]
-size = Vector2(16, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwgkm"]
-size = Vector2(16, 16)
-
-[node name="Protag" type="CharacterBody2D" unique_id=1526074758]
+[node name="Protag" type="Node2D" unique_id=396828613]
 script = ExtResource("1_jwgkm")
 
 [node name="ProtagSprite" type="AnimatedSprite2D" parent="." unique_id=1596222830]
@@ -172,10 +166,3 @@ visible = false
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3hevr")
 animation = &"up"
-
-[node name="ProtagCollision" type="CollisionShape2D" parent="." unique_id=1879585276]
-shape = SubResource("RectangleShape2D_1kgp5")
-
-[node name="SwordCollision" type="CollisionShape2D" parent="." unique_id=701133209]
-shape = SubResource("RectangleShape2D_jwgkm")
-disabled = true

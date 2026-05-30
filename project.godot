@@ -15,6 +15,10 @@ run/main_scene="uid://dlacpxe7xr5em"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Gameplay="*uid://b4e1xb7wpwlet"
+
 [display]
 
 window/size/viewport_width=256
@@ -28,7 +32,8 @@ window/stretch/scale_mode="integer"
 
 folder_colors={
 "res://assets/": "red",
-"res://gameplay/": "orange"
+"res://gameplay/": "orange",
+"res://globals/": "yellow"
 }
 
 [input]

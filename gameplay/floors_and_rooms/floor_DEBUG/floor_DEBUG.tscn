@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cmftho2cy6t7r"]
+
+[ext_resource type="Script" uid="uid://dwylfa32tvwmp" path="res://gameplay/floors_and_rooms/floor.gd" id="1_tiqcx"]
+[ext_resource type="PackedScene" uid="uid://m3qwdbkwitwj" path="res://gameplay/floors_and_rooms/floor_DEBUG/room_DEBUG_01.tscn" id="2_veu2m"]
+[ext_resource type="PackedScene" uid="uid://cfph0vyfudi3x" path="res://gameplay/floors_and_rooms/floor_DEBUG/room_DEBUG_02.tscn" id="3_ljimd"]
+
+[node name="FloorDebug" type="Node2D" unique_id=540239988 node_paths=PackedStringArray("active_room")]
+script = ExtResource("1_tiqcx")
+active_room = NodePath("RoomDebug")
+
+[node name="RoomDebug" parent="." unique_id=1962429657 instance=ExtResource("2_veu2m")]
+
+[node name="RoomDebug2" parent="." unique_id=381672016 instance=ExtResource("3_ljimd")]
+position = Vector2(256, 0)
