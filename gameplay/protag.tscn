@@ -7,6 +7,10 @@
 atlas = ExtResource("1_24c6c")
 region = Rect2(0, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_amu8c"]
+atlas = ExtResource("1_24c6c")
+region = Rect2(48, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_24c6c"]
 atlas = ExtResource("1_24c6c")
 region = Rect2(16, 0, 16, 16)
@@ -18,6 +22,10 @@ region = Rect2(32, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jjm2g"]
 atlas = ExtResource("1_24c6c")
 region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yandb"]
+atlas = ExtResource("1_24c6c")
+region = Rect2(48, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r3y5q"]
 atlas = ExtResource("1_24c6c")
@@ -35,6 +43,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"look_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amu8c")
+}],
+"loop": true,
+"name": &"look_left",
 "speed": 5.0
 }, {
 "frames": [{
@@ -63,6 +79,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_yandb")
+}],
+"loop": true,
+"name": &"sword_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_r3y5q")
 }],
 "loop": true,
@@ -82,6 +106,10 @@ animations = [{
 atlas = ExtResource("1_24c6c")
 region = Rect2(0, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtxaw"]
+atlas = ExtResource("1_24c6c")
+region = Rect2(32, 48, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3hevr"]
 atlas = ExtResource("1_24c6c")
 region = Rect2(16, 48, 16, 16)
@@ -97,7 +125,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_bt4d7")
 }],
 "loop": true,
-"name": &"sword_down",
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtxaw")
+}],
+"loop": true,
+"name": &"left",
 "speed": 5.0
 }, {
 "frames": [{
@@ -105,7 +141,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_3hevr")
 }],
 "loop": true,
-"name": &"sword_right",
+"name": &"right",
 "speed": 5.0
 }, {
 "frames": [{
@@ -113,9 +149,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_rawqs")
 }],
 "loop": true,
-"name": &"sword_up",
+"name": &"up",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kgp5"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwgkm"]
+size = Vector2(16, 16)
 
 [node name="Protag" type="CharacterBody2D" unique_id=1526074758]
 script = ExtResource("1_jwgkm")
@@ -123,9 +165,17 @@ script = ExtResource("1_jwgkm")
 [node name="ProtagSprite" type="AnimatedSprite2D" parent="." unique_id=1596222830]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_1kgp5")
-animation = &"look_down"
+animation = &"sword_left"
 
 [node name="SwordSprite" type="AnimatedSprite2D" parent="." unique_id=1812291134]
+visible = false
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3hevr")
-animation = &"sword_up"
+animation = &"up"
+
+[node name="ProtagCollision" type="CollisionShape2D" parent="." unique_id=1879585276]
+shape = SubResource("RectangleShape2D_1kgp5")
+
+[node name="SwordCollision" type="CollisionShape2D" parent="." unique_id=701133209]
+shape = SubResource("RectangleShape2D_jwgkm")
+disabled = true
