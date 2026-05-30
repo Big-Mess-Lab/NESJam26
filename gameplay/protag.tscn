@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://1ip0vr8umpa0"]
+
+[ext_resource type="Texture2D" uid="uid://dtlg1jmppi185" path="res://assets/placeholder/character.png" id="1_24c6c"]
+[ext_resource type="Script" uid="uid://bvalcqhpbbq4v" path="res://gameplay/protag.gd" id="1_jwgkm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwgkm"]
+atlas = ExtResource("1_24c6c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24c6c"]
+atlas = ExtResource("1_24c6c")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kgp5"]
+atlas = ExtResource("1_24c6c")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjm2g"]
+atlas = ExtResource("1_24c6c")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3y5q"]
+atlas = ExtResource("1_24c6c")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swbqr"]
+atlas = ExtResource("1_24c6c")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1kgp5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwgkm")
+}],
+"loop": true,
+"name": &"look_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24c6c")
+}],
+"loop": true,
+"name": &"look_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kgp5")
+}],
+"loop": true,
+"name": &"look_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjm2g")
+}],
+"loop": true,
+"name": &"sword_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3y5q")
+}],
+"loop": true,
+"name": &"sword_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swbqr")
+}],
+"loop": true,
+"name": &"sword_up",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt4d7"]
+atlas = ExtResource("1_24c6c")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hevr"]
+atlas = ExtResource("1_24c6c")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rawqs"]
+atlas = ExtResource("1_24c6c")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3hevr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt4d7")
+}],
+"loop": true,
+"name": &"sword_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hevr")
+}],
+"loop": true,
+"name": &"sword_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rawqs")
+}],
+"loop": true,
+"name": &"sword_up",
+"speed": 5.0
+}]
+
+[node name="Protag" type="CharacterBody2D" unique_id=1526074758]
+script = ExtResource("1_jwgkm")
+
+[node name="ProtagSprite" type="AnimatedSprite2D" parent="." unique_id=1596222830]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_1kgp5")
+animation = &"look_down"
+
+[node name="SwordSprite" type="AnimatedSprite2D" parent="." unique_id=1812291134]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_3hevr")
+animation = &"sword_up"
