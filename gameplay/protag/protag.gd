@@ -169,7 +169,7 @@ func _interact_check() -> Node:
 
 # Launch funcs
 func _launch_start():
-	if _launch_can_move():
+	if !launch_active and _launch_can_move():
 		launch_active = true
 
 func _launch_can_move() -> bool:
@@ -208,7 +208,6 @@ func _launch_move(delta: float):
 		if distance_moved < 16:
 			global_position += move_direction * step_speed * delta
 			distance_moved += 1 * step_speed * delta
-			print("Distance moved: " + str(distance_moved))
 		else:
 			distance_moved = 0
 			_set_current_cell()
