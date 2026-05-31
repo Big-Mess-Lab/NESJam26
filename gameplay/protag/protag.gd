@@ -15,6 +15,8 @@ var current_sword: Sword = Sword.DOWN
 var show_sword: bool = false
 var move_aim_mode: bool = true
 var coords_of_cell_in_front: Vector2i
+var last_input_b: bool
+var last_move_direction: Facing = Facing.DOWN
 
 # Launching
 var launch_active: bool = false
@@ -45,10 +47,14 @@ func _input(event: InputEvent):
 		return
 	
 	# Change sword/face mode
-	if event.is_action_pressed("b"):
-		move_aim_mode = false
 	if event.is_action_released("b"):
 		move_aim_mode = true
+		if last_input_b and show_sword:
+			_toggle_show_sword()
+	last_input_b = false
+	if event.is_action_pressed("b"):
+		move_aim_mode = false
+		last_input_b = true
 	
 	if !move_aim_mode:
 		# Sword Directions
@@ -64,22 +70,34 @@ func _input(event: InputEvent):
 		# Face Directions
 		if event.is_action_pressed("up"):
 			_update_facing(Facing.UP)
+			if last_move_direction == Facing.UP:
+				_input_launch()
+			last_move_direction = Facing.UP
 		if event.is_action_pressed("down"):
 			_update_facing(Facing.DOWN)
+			if last_move_direction == Facing.DOWN:
+				_input_launch()
+			last_move_direction = Facing.DOWN
 		if event.is_action_pressed("left"):
 			_update_facing(Facing.LEFT)
+			if last_move_direction == Facing.LEFT:
+				_input_launch()
+			last_move_direction = Facing.LEFT
 		if event.is_action_pressed("right"):
 			_update_facing(Facing.RIGHT)
-	
-	if event.is_action_pressed("a"):
-		_update_facing(current_facing)
-		var object: Node = _interact_check()
-		if object != null and object.has_method("interact"):
-			object.interact()
-		elif _launch_can_move():
-			Gameplay.launch_active = true
-			Gameplay.launch_enemies()
-			_launch_start()
+			if last_move_direction == Facing.RIGHT:
+				_input_launch()
+			last_move_direction = Facing.RIGHT
+
+func _input_launch():
+	_update_facing(current_facing)
+	var object: Node = _interact_check()
+	if object != null and object.has_method("interact"):
+		object.interact()
+	elif _launch_can_move():
+		Gameplay.launch_active = true
+		Gameplay.launch_enemies()
+		_launch_start()
 
 func _update_facing(new_facing_direction: Facing):
 	current_facing = new_facing_direction
@@ -128,9 +146,7 @@ func _update_sword(new_sword_direction: Sword):
 				new_position = Vector2(16, 0)
 				collided = false
 	
-	if show_sword and new_sword_direction == current_sword:
-		_toggle_show_sword()
-	elif !show_sword and !collided:
+	if !show_sword and !collided:
 		_toggle_show_sword()
 	
 	if show_sword and !collided:
