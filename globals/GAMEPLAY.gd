@@ -1,7 +1,7 @@
 extends Node
 
 # Game Settings
-var game_speed: int = 2
+var game_speed: int = 5
 
 # Nodes
 const PROTAG_NODE = preload("uid://1ip0vr8umpa0")
@@ -11,10 +11,20 @@ var current_floor: Node2D
 # Functions
 func get_tile_coordinate(px_coordinate: Vector2) -> Vector2i:
 	if px_coordinate.x > 256 or px_coordinate.y > 240 or px_coordinate.x < 0 or px_coordinate.y < 0:
-		print("WARNING: Tile Coordinate queried object is outside of level")
-		return Vector2i(128, 120)
+		print("WARNING: Tile Coordinate queried object is outside of level: " + str(px_coordinate))
+		return Vector2i(8, 7)
 	
 	@warning_ignore("integer_division")
 	var tile_coordinate: Vector2i = Vector2i(int(px_coordinate.x) / 16, int(px_coordinate.y) / 16)
 	
 	return tile_coordinate
+
+func get_px_coordinate(tile_coordinate: Vector2i) -> Vector2:
+	if tile_coordinate.x > 15 or tile_coordinate.y > 14 or tile_coordinate.x < 0 or tile_coordinate.y < 0:
+		print("WARNING: Tile Coordinate queried object is outside of level: " + str(tile_coordinate))
+		return Vector2(128, 120)
+	
+	@warning_ignore("integer_division")
+	var px_coordinate: Vector2 = Vector2(tile_coordinate.x * 16.0 + 8.0, tile_coordinate.y * 16.0 + 8.0)
+	
+	return px_coordinate

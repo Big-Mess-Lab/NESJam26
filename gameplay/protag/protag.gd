@@ -5,6 +5,9 @@ extends Node2D
 @onready var protag_sprite: AnimatedSprite2D = $ProtagSprite
 var active_room: Node2D = Gameplay.current_floor.active_room
 
+# Core vars
+var current_cell: Vector2i
+
 # Face and Sword directions
 enum Facing {UP, DOWN, LEFT, RIGHT}
 enum Sword {UP, DOWN, LEFT, RIGHT}
@@ -16,19 +19,20 @@ var coords_of_cell_in_front: Vector2i
 
 # Launching
 var launch_active: bool = false
-var distance_moved: int = 0
+var distance_moved: float = 0.0
 var move_direction: Vector2 = Vector2.ZERO
 
 # Funcs
 func _ready():
 	_update_facing(Facing.DOWN)
 	Gameplay.protag = self
+	_set_current_cell()
 
-func _process(_delta):
+func _process(delta):
 	if !launch_active:
 		return
 	
-	_launch_move()
+	_launch_move(delta * 60)
 
 func _input(event: InputEvent):
 	# Early exit if we're moving
@@ -37,7 +41,9 @@ func _input(event: InputEvent):
 	
 	# Change sword/face mode
 	if event.is_action_pressed("b"):
-		_change_mode()
+		move_aim_mode = false
+	if event.is_action_released("b"):
+		move_aim_mode = true
 	
 	if !move_aim_mode:
 		# Sword Directions
@@ -63,8 +69,8 @@ func _input(event: InputEvent):
 	if event.is_action_pressed("a"):
 		_update_facing(current_facing)
 		var object: Node = _interact_check()
-		if object != null:
-			_interact(object)
+		if object != null and object.has_method("interact"):
+			object.interact()
 		else:
 			_launch_start()
 
@@ -124,12 +130,6 @@ func _update_sword(new_sword_direction: Sword):
 		sword_sprite.position = new_position
 		current_sword = new_sword_direction
 
-func _change_mode():
-	if move_aim_mode:
-		move_aim_mode = false
-	else:
-		move_aim_mode = true
-
 func _toggle_show_sword():
 	if show_sword:
 		show_sword = false
@@ -151,6 +151,11 @@ func query_for_collision(coords: Vector2) -> int:
 	# Then for 
 	return -1
 
+func _set_current_cell():
+	# Grid-locks current position and updates cell data
+	current_cell = Gameplay.get_tile_coordinate(global_position)
+	global_position = Gameplay.get_px_coordinate(current_cell)
+
 # Interact funcs
 func _interact_check() -> Node:
 	var objects: Array[Node] = active_room.objects.get_children()
@@ -161,9 +166,6 @@ func _interact_check() -> Node:
 			interacted_object = o
 	
 	return interacted_object
-
-func _interact(object: Node):
-	object.interact()
 
 # Launch funcs
 func _launch_start():
@@ -197,18 +199,24 @@ func _launch_can_move() -> bool:
 		can_move = true
 	return can_move
 
-func _launch_move():
+func _launch_move(delta: float):
 	if launch_active:
+		var step_speed: float = 16.0 / Gameplay.game_speed
+		# trigger curve lerp
+		# at end of curve lerp, set current cell, check for move
+		# retrigger curve if can move, early exit if not
 		if distance_moved < 16:
-			global_position += move_direction * Gameplay.game_speed
-			distance_moved += 1 * Gameplay.game_speed
+			global_position += move_direction * step_speed * delta
+			distance_moved += 1 * step_speed * delta
+			print("Distance moved: " + str(distance_moved))
 		else:
 			distance_moved = 0
+			_set_current_cell()
 			if !_launch_can_move():
 				_launch_stop()
 				return
-			global_position += move_direction * Gameplay.game_speed
-			distance_moved += 1 * Gameplay.game_speed
+			global_position += move_direction * step_speed * delta
+			distance_moved += 1 * step_speed * delta
 
 func _launch_stop():
 	launch_active = false
