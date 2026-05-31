@@ -3,7 +3,6 @@ extends Node2D
 # Nodes
 @onready var sword_sprite: AnimatedSprite2D = $SwordSprite
 @onready var protag_sprite: AnimatedSprite2D = $ProtagSprite
-var active_room: Node2D = Gameplay.current_floor.active_room
 
 # Core vars
 var current_cell: Vector2i
@@ -35,8 +34,10 @@ func _process(delta):
 	_launch_move(delta * 60)
 
 func _input(event: InputEvent):
-	# Early exit if we're moving
+	# Early exit if we're moving or transitioning
 	if launch_active:
+		return
+	if Gameplay.current_floor.transition_active:
 		return
 	
 	# Change sword/face mode
@@ -158,9 +159,8 @@ func _set_current_cell():
 
 # Interact funcs
 func _interact_check() -> Node:
-	var objects: Array[Node] = active_room.objects.get_children()
+	var objects: Array[Node] = Gameplay.current_floor.active_room.objects.get_children()
 	var interacted_object: Node = null
-	
 	for o in objects:
 		if Vector2i(o.global_position) == coords_of_cell_in_front:
 			interacted_object = o
@@ -219,4 +219,3 @@ func _launch_move(delta: float):
 
 func _launch_stop():
 	launch_active = false
-	print("My coords: " + str(global_position))

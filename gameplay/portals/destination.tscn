@@ -1,4 +1,4 @@
 [gd_scene format=3 uid="uid://d38c71snlkegd"]
 
 [node name="Destination" type="Marker2D" unique_id=1448722286]
-gizmo_extents = 16.0
+gizmo_extents = 8.0
