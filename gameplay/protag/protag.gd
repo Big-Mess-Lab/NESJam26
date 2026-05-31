@@ -219,3 +219,4 @@ func _launch_move(delta: float):
 
 func _launch_stop():
 	launch_active = false
+	print("My coords: " + str(global_position))

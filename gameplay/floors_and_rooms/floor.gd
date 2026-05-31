@@ -6,6 +6,8 @@ var transition_step: Vector2
 var transition_steps_taken: int = 0
 var transition_active: bool = false
 var transition_destination: Vector2
+var transition_done: bool = false
+var transition_destination_room: Node
 
 # Vars
 @export var active_room: Node2D
@@ -29,6 +31,7 @@ func transition_to_room(destination: Node):
 		return
 	
 	transition_destination = destination.global_position
+	transition_destination_room = destination
 	transition_step = (transition_destination - global_position) / transition_steps_total
 	transition_active = true
 
@@ -36,6 +39,9 @@ func _transition_end():
 	transition_active = false
 	global_position = -transition_destination
 	transition_steps_taken = 0
+	active_room = transition_destination_room
+	transition_destination_room = null
+	transition_done = true
 
 func _transition(delta: float):
 	if transition_steps_taken < transition_steps_total:
