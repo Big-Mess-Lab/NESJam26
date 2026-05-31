@@ -8,6 +8,9 @@ const PROTAG_NODE = preload("uid://1ip0vr8umpa0")
 var protag: Node2D
 var current_floor: Node2D
 
+# Movement
+var launch_active: bool = false
+
 # Functions
 func get_tile_coordinate(px_coordinate: Vector2) -> Vector2i:
 	if px_coordinate.x > 256 or px_coordinate.y > 240 or px_coordinate.x < 0 or px_coordinate.y < 0:
@@ -28,3 +31,21 @@ func get_px_coordinate(tile_coordinate: Vector2i) -> Vector2:
 	px_coordinate.x = min(max(px_coordinate.x, 0), 256)
 	px_coordinate.y = min(max(px_coordinate.y, 0), 240)
 	return px_coordinate
+
+func launch_enemies():
+	for e in current_floor.active_room.enemies.get_children():
+		if e.has_method("launch"):
+			e.launch()
+
+func launch_update():
+	if _check_enemy_launch_status():
+		launch_active = false
+
+func _check_enemy_launch_status() -> bool:
+	if protag.launch_active:
+		return false
+	var done: bool = true
+	for e in current_floor.active_room.enemies.get_children():
+		if e.launch_done == false:
+			return false
+	return true

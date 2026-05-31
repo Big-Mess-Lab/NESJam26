@@ -4,6 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bybn273sigipb" path="res://gameplay/floors_and_rooms/tileset_world.tres" id="2_5u5jw"]
 [ext_resource type="PackedScene" uid="uid://chg8lgqq6pcoc" path="res://gameplay/portals/portal.tscn" id="3_t7aoa"]
 [ext_resource type="PackedScene" uid="uid://d38c71snlkegd" path="res://gameplay/portals/destination.tscn" id="4_i3hs0"]
+[ext_resource type="PackedScene" uid="uid://dwpyrxyfavb5q" path="res://gameplay/enemies/enemy_DEBUG/enemy_DEBUG.tscn" id="5_5u5jw"]
 
 [node name="RoomDebug" type="Node2D" unique_id=1962429657]
 script = ExtResource("1_8vcnx")
@@ -36,3 +37,13 @@ position = Vector2(216, 216)
 
 [node name="Destination3" parent="Objects" unique_id=2028991395 instance=ExtResource("4_i3hs0")]
 position = Vector2(216, 200)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=970637273]
+
+[node name="EnemyDebug" parent="Enemies" unique_id=673175981 instance=ExtResource("5_5u5jw")]
+position = Vector2(56, 72)
+current_facing = 0
+
+[node name="EnemyDebug2" parent="Enemies" unique_id=1135704271 instance=ExtResource("5_5u5jw")]
+position = Vector2(200, 184)
+current_facing = 0

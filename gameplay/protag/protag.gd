@@ -30,6 +30,8 @@ func _ready():
 func _process(delta):
 	if !launch_active:
 		return
+	if !Gameplay.launch_active:
+		return
 	
 	_launch_move(delta * 60)
 
@@ -38,6 +40,8 @@ func _input(event: InputEvent):
 	if launch_active:
 		return
 	if Gameplay.current_floor.transition_active:
+		return
+	if Gameplay.launch_active:
 		return
 	
 	# Change sword/face mode
@@ -72,7 +76,9 @@ func _input(event: InputEvent):
 		var object: Node = _interact_check()
 		if object != null and object.has_method("interact"):
 			object.interact()
-		else:
+		elif _launch_can_move():
+			Gameplay.launch_active = true
+			Gameplay.launch_enemies()
 			_launch_start()
 
 func _update_facing(new_facing_direction: Facing):
@@ -149,7 +155,6 @@ func query_for_collision(coords: Vector2) -> int:
 	if collided_wall:
 		return 0
 	
-	# Then for 
 	return -1
 
 func _set_current_cell():
@@ -171,6 +176,7 @@ func _interact_check() -> Node:
 func _launch_start():
 	if !launch_active and _launch_can_move():
 		launch_active = true
+		Gameplay.launch_active = true
 
 func _launch_can_move() -> bool:
 	var can_move_body: bool
@@ -219,3 +225,4 @@ func _launch_move(delta: float):
 
 func _launch_stop():
 	launch_active = false
+	Gameplay.launch_update()

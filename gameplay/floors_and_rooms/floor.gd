@@ -3,7 +3,6 @@ extends Node2D
 # Nodes
 @onready var spawn_point: Marker2D = $SpawnPoint
 
-
 # Transition
 var transition_steps_total: int = 50
 var transition_step: Vector2
@@ -17,11 +16,17 @@ var transition_destination_room: Node
 @export var active_room: Node2D
 
 func _ready():
+	# Initialize self node on gameplay global, init protag
 	Gameplay.current_floor = self
 	active_room.is_active = true
 	Gameplay.protag = Gameplay.PROTAG_NODE.instantiate()
 	Gameplay.protag.global_position = spawn_point.global_position
 	add_child(Gameplay.protag)
+	
+	# Init enemies
+	for e in active_room.enemies.get_children():
+		if e.has_method("set_current_cell"):
+			e.set_current_cell()
 
 func _process(delta):
 	if !transition_active:

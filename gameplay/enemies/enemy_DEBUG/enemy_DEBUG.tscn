@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dwpyrxyfavb5q"]
+
+[ext_resource type="Script" uid="uid://dwns08c8wvn53" path="res://gameplay/enemies/enemy.gd" id="1_fnfpj"]
+[ext_resource type="Texture2D" uid="uid://dtlg1jmppi185" path="res://assets/placeholder/character.png" id="1_yjy5a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnfpj"]
+atlas = ExtResource("1_yjy5a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0da2h"]
+atlas = ExtResource("1_yjy5a")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u15g"]
+atlas = ExtResource("1_yjy5a")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue80e"]
+atlas = ExtResource("1_yjy5a")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wx2d1"]
+atlas = ExtResource("1_yjy5a")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrdcf"]
+atlas = ExtResource("1_yjy5a")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cudti"]
+atlas = ExtResource("1_yjy5a")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sbel"]
+atlas = ExtResource("1_yjy5a")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6gphs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnfpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0da2h")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u15g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue80e")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wx2d1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrdcf")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cudti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sbel")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="EnemyDebug" type="Node2D" unique_id=673175981]
+script = ExtResource("1_fnfpj")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1191839487]
+sprite_frames = SubResource("SpriteFrames_6gphs")
+animation = &"right"
+frame_progress = 0.14749989
