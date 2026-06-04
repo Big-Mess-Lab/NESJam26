@@ -1,7 +1,7 @@
 extends Node
 
 # Game Settings
-var game_speed: int = 5
+var game_speed: float = 0.15
 
 # Nodes
 const PROTAG_NODE = preload("uid://1ip0vr8umpa0")
@@ -31,6 +31,11 @@ func get_px_coordinate(tile_coordinate: Vector2i) -> Vector2:
 	px_coordinate.x = min(max(px_coordinate.x, 0), 256)
 	px_coordinate.y = min(max(px_coordinate.y, 0), 240)
 	return px_coordinate
+
+func snap_current_cell(entity: GridEntity):
+	# Grid-locks current position and updates cell data
+	entity.current_cell = get_tile_coordinate(entity.global_position)
+	entity.global_position = get_px_coordinate(entity.current_cell)
 
 func launch_enemies():
 	for e in current_floor.active_room.enemies.get_children():

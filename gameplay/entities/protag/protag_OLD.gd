@@ -1,11 +1,8 @@
-extends Node2D
+extends GridEntity
 
 # Nodes
 @onready var sword_sprite: AnimatedSprite2D = $SwordSprite
 @onready var protag_sprite: AnimatedSprite2D = $ProtagSprite
-
-# Core vars
-var current_cell: Vector2i
 
 # Face and Sword directions
 enum Facing {UP, DOWN, LEFT, RIGHT}
@@ -174,9 +171,7 @@ func query_for_collision(coords: Vector2) -> int:
 	return -1
 
 func _set_current_cell():
-	# Grid-locks current position and updates cell data
-	current_cell = Gameplay.get_tile_coordinate(global_position)
-	global_position = Gameplay.get_px_coordinate(current_cell)
+	Gameplay.snap_current_cell(self)
 
 # Interact funcs
 func _interact_check() -> Node:

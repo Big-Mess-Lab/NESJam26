@@ -1,11 +1,10 @@
-extends Node2D
+extends GridEntity
 
 # Exports
 @export var destination: Marker2D
 
 # Nodes
-@onready var parent_room: Node = get_parent().get_parent()
-@onready var parent_floor: Node = parent_room.get_parent()
+@onready var parent_floor: Node
 var destination_room: Node
 
 # Vars
@@ -13,6 +12,11 @@ var transitioning: bool = false
 
 # Funcs
 func _ready():
+	facing = Dir.DOWN
+	layer = Layer.ENTITY
+	super._ready()
+	parent_floor = room.get_parent()
+	
 	if !destination:
 		print("WARNING: No destination set for portal! " + str(self))
 		return
@@ -22,18 +26,20 @@ func _ready():
 func _process(_delta):
 	if !transitioning:
 		return
-	
+	print("Portal processing, transition_done=", parent_floor.transition_done)
 	if parent_floor.transition_done:
 		_move_player()
 
-func interact():
+func interact(striker):
+	print("Portal interacted")
 	_teleport()
 
 func _teleport():
+	print("Teleport, floow=", parent_floor)
 	parent_floor.transition_to_room(destination_room)
 	transitioning = true
 
 func _move_player():
 	transitioning = false
 	parent_floor.transition_done = false
-	Gameplay.protag.global_position = destination.global_position
+	Gameplay.protag.move_to_room(destination_room, destination.global_position)

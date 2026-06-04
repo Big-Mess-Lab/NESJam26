@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://njmywvu28cfs" path="res://gameplay/floors_and_rooms/floor_DEBUG/room_DEBUG_03.tscn" id="4_rkodh"]
 [ext_resource type="PackedScene" uid="uid://cfph0vyfudi3x" path="res://gameplay/floors_and_rooms/floor_DEBUG/room_DEBUG_04.tscn" id="5_xn7kn"]
 
-[node name="FloorDebug" type="Node2D" unique_id=540239988 node_paths=PackedStringArray("active_room")]
+[node name="FloorDebug" type="Node2D" unique_id=540239988 node_paths=PackedStringArray("active_spawn", "active_room")]
 script = ExtResource("1_tiqcx")
+active_spawn = NodePath("SpawnPoint")
 active_room = NodePath("RoomDebug4")
 
 [node name="RoomDebug" parent="." unique_id=1962429657 instance=ExtResource("2_veu2m")]

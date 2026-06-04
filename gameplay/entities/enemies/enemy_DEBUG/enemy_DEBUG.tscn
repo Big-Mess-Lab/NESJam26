@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dwpyrxyfavb5q"]
 
-[ext_resource type="Script" uid="uid://dwns08c8wvn53" path="res://gameplay/enemies/enemy.gd" id="1_fnfpj"]
+[ext_resource type="Script" uid="uid://dwns08c8wvn53" path="res://gameplay/entities/enemies/enemy.gd" id="1_fnfpj"]
 [ext_resource type="Texture2D" uid="uid://c6wvsr4qse642" path="res://assets/characters/spritesheet_snail.png" id="2_fnfpj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0da2h"]

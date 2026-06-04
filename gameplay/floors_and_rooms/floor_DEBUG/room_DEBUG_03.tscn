@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bybn273sigipb" path="res://gameplay/floors_and_rooms/tileset_world.tres" id="2_5u5jw"]
 [ext_resource type="PackedScene" uid="uid://chg8lgqq6pcoc" path="res://gameplay/portals/portal.tscn" id="3_t7aoa"]
 [ext_resource type="PackedScene" uid="uid://d38c71snlkegd" path="res://gameplay/portals/destination.tscn" id="4_i3hs0"]
-[ext_resource type="PackedScene" uid="uid://dwpyrxyfavb5q" path="res://gameplay/enemies/enemy_DEBUG/enemy_DEBUG.tscn" id="5_5u5jw"]
+[ext_resource type="PackedScene" uid="uid://dwpyrxyfavb5q" path="res://gameplay/entities/enemies/enemy_DEBUG/enemy_DEBUG.tscn" id="5_5u5jw"]
 
 [node name="RoomDebug" type="Node2D" unique_id=1962429657]
 script = ExtResource("1_8vcnx")

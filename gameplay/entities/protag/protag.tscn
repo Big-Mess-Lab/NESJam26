@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://1ip0vr8umpa0"]
 
+[ext_resource type="Script" uid="uid://bh53xlm0kqqoj" path="res://gameplay/entities/protag/protag.gd" id="1_0xrmq"]
 [ext_resource type="Texture2D" uid="uid://dtlg1jmppi185" path="res://assets/placeholder/character.png" id="1_24c6c"]
-[ext_resource type="Script" uid="uid://bvalcqhpbbq4v" path="res://gameplay/protag/protag.gd" id="1_jwgkm"]
 [ext_resource type="Texture2D" uid="uid://bgkt1o3u7ifja" path="res://assets/characters/spritesheet_taxknight_idle.png" id="2_hkfcp"]
 [ext_resource type="Texture2D" uid="uid://670lmaq8cq5j" path="res://assets/characters/spritesheet_taxknight_unarmed.png" id="3_63agk"]
 
@@ -184,7 +184,9 @@ animations = [{
 }]
 
 [node name="Protag" type="Node2D" unique_id=396828613]
-script = ExtResource("1_jwgkm")
+script = ExtResource("1_0xrmq")
+layer = null
+has_attachment = null
 
 [node name="ProtagSprite" type="AnimatedSprite2D" parent="." unique_id=1596222830]
 texture_filter = 1

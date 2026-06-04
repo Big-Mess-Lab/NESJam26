@@ -1,7 +1,7 @@
 extends Node2D
 
 # Nodes
-@onready var spawn_point: Marker2D = $SpawnPoint
+@export var active_spawn: Marker2D
 
 # Transition
 var transition_steps_total: int = 50
@@ -16,17 +16,14 @@ var transition_destination_room: Node
 @export var active_room: Node2D
 
 func _ready():
-	# Initialize self node on gameplay global, init protag
+	# Initialize self node on gameplay global
 	Gameplay.current_floor = self
 	active_room.is_active = true
-	Gameplay.protag = Gameplay.PROTAG_NODE.instantiate()
-	Gameplay.protag.global_position = spawn_point.global_position
-	add_child(Gameplay.protag)
 	
-	# Init enemies
-	for e in active_room.enemies.get_children():
-		if e.has_method("set_current_cell"):
-			e.set_current_cell()
+	# Init protag
+	Gameplay.protag = Gameplay.PROTAG_NODE.instantiate()
+	Gameplay.protag.position = active_room.to_local(active_spawn.global_position)
+	active_room.add_child(Gameplay.protag)
 
 func _process(delta):
 	if !transition_active:
@@ -53,7 +50,6 @@ func _transition_end():
 	transition_done = true
 
 func _transition(delta: float):
-	print("Ongoing transition: " + str(transition_steps_taken) + "/" + str(transition_steps_total) + " steps taken, position at: " + str(global_position))
 	if transition_steps_taken < transition_steps_total:
 		global_position += transition_step * delta
 		transition_steps_taken += 1
