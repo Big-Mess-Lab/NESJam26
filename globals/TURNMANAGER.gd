@@ -8,9 +8,16 @@ func start_turn():
 		return
 	
 	is_resolving = true
+	_begin_enemies()
 	await _run_turn()
 	is_resolving = false
 	_turn_end()
+
+func _begin_enemies():
+	var room = Gameplay.current_floor.active_room
+	for e in room.enemies.get_children():
+		if e is GridEntity and e.has_method("begin_turn"):
+			e.begin_turn()
 
 func _gather_movers() -> Array:
 	var movers: Array = []

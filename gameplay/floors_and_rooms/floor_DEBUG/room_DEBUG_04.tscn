@@ -43,4 +43,4 @@ position = Vector2(88, 104)
 
 [node name="EnemyDebug2" parent="Enemies" unique_id=725658937 instance=ExtResource("5_yev0y")]
 position = Vector2(168, 184)
-current_facing = 0
+start_facing = 0

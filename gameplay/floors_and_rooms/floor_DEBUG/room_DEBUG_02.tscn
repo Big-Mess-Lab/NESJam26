@@ -40,8 +40,7 @@ position = Vector2(200, 40)
 
 [node name="EnemyDebug" parent="Enemies" unique_id=673175981 instance=ExtResource("5_1qojp")]
 position = Vector2(88, 104)
-current_facing = 3
+start_facing = 0
 
 [node name="EnemyDebug2" parent="Enemies" unique_id=137455733 instance=ExtResource("5_1qojp")]
 position = Vector2(168, 184)
-current_facing = 2
