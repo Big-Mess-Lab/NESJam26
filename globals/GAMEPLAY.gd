@@ -1,7 +1,7 @@
 extends Node
 
 # Game Settings
-var game_speed: float = 0.15
+var game_speed: float = 0.2
 
 # Nodes
 const PROTAG_NODE = preload("uid://1ip0vr8umpa0")

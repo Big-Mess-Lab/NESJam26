@@ -47,11 +47,15 @@ func _run_turn():
 		if movers.is_empty():
 			return
 		
+		var beat_duration: float = Gameplay.game_speed
+		if !Gameplay.protag.is_launching:
+			beat_duration = Gameplay.game_speed * 0.5
+		
 		var all_strikes: Array = []
 		
 		# 1: Move every mover in order
 		for m in movers:
-			var result = m.advance_step()
+			var result = m.advance_step(beat_duration)
 			if result.outcome == GridEntity.Outcome.STRUCK_ENTITY:
 				all_strikes.append_array(result.strikes)
 		
@@ -61,13 +65,13 @@ func _run_turn():
 			target.on_struck(strike)
 		
 		# 3: Wait for all anims in this turn
-		await _await_beat(movers)
+		await _await_beat(movers, beat_duration)
 
-func _await_beat(movers: Array):
+func _await_beat(movers: Array, beat_duration: float):
 	for m in movers:
 		if m.is_animating:
-			await m.step_finished
-			break
+			await get_tree().create_timer(beat_duration).timeout
+			return
 
 func _turn_end():
 	# tick conditionals

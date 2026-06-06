@@ -53,7 +53,7 @@ func _find_room() -> Node:
 		node = node.get_parent()
 	return null
 
-func try_step(direction: Vector2i) -> StepResult:
+func try_step(direction: Vector2i, beat_duration: float) -> StepResult:
 	var target_cell: Vector2i = current_cell + direction
 	var target_attachment_cell: Vector2i
 	var target_cell_contents: Array
@@ -102,7 +102,7 @@ func try_step(direction: Vector2i) -> StepResult:
 	room.move_occupant(current_cell, target_cell, self)
 	current_cell = target_cell
 	distance_this_launch += 1
-	_start_move_tween()
+	_start_move_tween(beat_duration)
 	return StepResult.new(Outcome.PROCEED, [])
 
 func death():
@@ -121,10 +121,10 @@ func blocks(other: GridEntity) -> bool: # Am I blocked by other?
 		return true
 	return GridEntity.layers_collide(layer, other.layer)
 
-func _start_move_tween():
+func _start_move_tween(beat_duration: float):
 	var tween: Tween = create_tween()
-	tween.set_trans(Tween.TRANS_LINEAR)
-	tween.tween_property(self, "global_position", Gameplay.cell_to_local(current_cell), Gameplay.game_speed)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "global_position", Gameplay.cell_to_local(current_cell), beat_duration)
 	tween.finished.connect(_on_step_finished)
 
 func _on_step_finished():
@@ -140,8 +140,8 @@ static func get_wall() -> GridEntity:
 static func layers_collide(a: Layer, b: Layer) -> bool:
 	return a == Layer.ENTITY and b == Layer.ENTITY
 
-func advance_step() -> StepResult:
-	var result: StepResult = try_step(facing)
+func advance_step(beat_duration: float) -> StepResult:
+	var result: StepResult = try_step(facing, beat_duration)
 	if result.outcome != Outcome.PROCEED:
 		is_launching = false
 	

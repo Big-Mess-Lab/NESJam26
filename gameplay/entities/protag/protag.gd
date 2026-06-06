@@ -105,13 +105,17 @@ func _toggle_show_sword():
 func can_launch() -> bool:
 	# Protag Body check
 	for e in room.get_cell_contents(current_cell + facing):
-		if e.is_wall:
+		if e == self:
+			continue
+		if blocks(e):
 			return false
 	
 	# Sword check
 	if has_attachment:
 		for e in room.get_cell_contents(current_cell + attachment_offset + facing):
-			if e.is_wall:
+			if e == self:
+				continue
+			if blocks(e):
 				return false
 	
 	return true
@@ -135,4 +139,3 @@ func _try_launch():
 func on_struck(strike):
 	# Player loses life
 	print("Protag struck by ", strike["striker"], " from ", strike["direction"])
-	is_launching = false

@@ -5,6 +5,18 @@
 [ext_resource type="PackedScene" uid="uid://chg8lgqq6pcoc" path="res://gameplay/portals/portal.tscn" id="3_oxonq"]
 [ext_resource type="PackedScene" uid="uid://d38c71snlkegd" path="res://gameplay/portals/destination.tscn" id="4_ioau8"]
 [ext_resource type="PackedScene" uid="uid://dwpyrxyfavb5q" path="res://gameplay/entities/enemies/enemy_DEBUG/enemy_DEBUG.tscn" id="5_yev0y"]
+[ext_resource type="Script" uid="uid://bwo3qrfyitm4w" path="res://gameplay/entities/actions/enemy_action.gd" id="6_ioau8"]
+[ext_resource type="Script" uid="uid://c3sm0wqf7s80v" path="res://gameplay/entities/actions/action_move_steps.gd" id="7_e02u7"]
+
+[sub_resource type="Resource" id="Resource_j4mdk"]
+script = ExtResource("7_e02u7")
+steps = 3
+metadata/_custom_type_script = "uid://c3sm0wqf7s80v"
+
+[sub_resource type="Resource" id="Resource_ioau8"]
+script = ExtResource("7_e02u7")
+steps = 3
+metadata/_custom_type_script = "uid://c3sm0wqf7s80v"
 
 [node name="RoomDebug" type="Node2D" unique_id=1962429657]
 script = ExtResource("1_kdbul")
@@ -39,8 +51,11 @@ position = Vector2(40, 200)
 [node name="Enemies" type="Node2D" parent="." unique_id=897985144]
 
 [node name="EnemyDebug" parent="Enemies" unique_id=673175981 instance=ExtResource("5_yev0y")]
-position = Vector2(88, 104)
+position = Vector2(56, 104)
+actions = Array[ExtResource("6_ioau8")]([SubResource("Resource_j4mdk")])
+start_facing = 3
 
 [node name="EnemyDebug2" parent="Enemies" unique_id=725658937 instance=ExtResource("5_yev0y")]
-position = Vector2(168, 184)
-start_facing = 0
+position = Vector2(168, 104)
+actions = Array[ExtResource("6_ioau8")]([SubResource("Resource_ioau8")])
+start_facing = 2
