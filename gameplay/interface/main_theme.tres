@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://bepo0navlm3v2"]
+
+[ext_resource type="FontFile" uid="uid://uvxuvf4xq2dd" path="res://assets/interface/font_tnr.png" id="1_pb0ly"]
+
+[resource]
+RichTextLabel/fonts/normal_font = ExtResource("1_pb0ly")

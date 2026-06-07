@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://uvxuvf4xq2dd"
+path="res://.godot/imported/font_tnr.png-ea5b9252833e0ad704235814499f9824.fontdata"
+
+[deps]
+
+source_file="res://assets/interface/font_tnr.png"
+dest_files=["res://.godot/imported/font_tnr.png-ea5b9252833e0ad704235814499f9824.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("32-126", "158", "169", "184", "246", "248", "")
+kerning_pairs=PackedStringArray()
+columns=16
+rows=7
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=2

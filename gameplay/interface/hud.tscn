@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bpimy05vglr74"]
+
+[ext_resource type="Theme" uid="uid://bepo0navlm3v2" path="res://gameplay/interface/main_theme.tres" id="1_dheoj"]
+
+[node name="Hud" type="CanvasLayer" unique_id=580020553]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=787044335]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_dheoj")
+text = "what if it wasn't his fault? Then: we stopped. but what if, this is all just a font?! \"no!\", she screamed. lolwut ^_^ ~ >3<
+Taxes & Rollerskates "
