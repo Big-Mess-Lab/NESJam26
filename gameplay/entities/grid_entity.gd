@@ -144,6 +144,8 @@ func advance_step(beat_duration: float) -> StepResult:
 	var result: StepResult = try_step(facing, beat_duration)
 	if result.outcome != Outcome.PROCEED:
 		is_launching = false
+		if self == Gameplay.protag:
+			Gameplay.protag._update_sprites()
 	
 	return result
 

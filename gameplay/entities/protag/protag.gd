@@ -65,11 +65,12 @@ func _press_facing(dir: Vector2i):
 
 func _update_facing(dir: Vector2i):
 	facing = dir
-	protag_sprite.play("look_" + Dir.anim_suffix(dir))
+	_update_sprites()
 
 func _update_sword(dir: Vector2i):
 	if show_sword and dir == current_sword:
 		_toggle_show_sword()
+		_update_sprites()
 		return
 	
 	var sword_cell: Vector2i = current_cell + dir
@@ -90,9 +91,8 @@ func _update_sword(dir: Vector2i):
 	# Commit aim
 	attachment_offset = dir
 	has_attachment = true
-	sword_sprite.play(Dir.anim_suffix(dir))
-	sword_sprite.position = dir * 16
 	current_sword = dir
+	_update_sprites()
 	last_input_b = false
 
 func _toggle_show_sword():
@@ -133,8 +133,24 @@ func _try_launch():
 		return
 	is_launching = true
 	distance_this_launch = 0
+	_update_sprites()
 	TurnManager.start_turn()
 
 func on_struck(strike):
 	# Player loses life
 	print("Protag struck by ", strike["striker"], " from ", strike["direction"])
+
+func _update_sprites():
+	var motion: String = "move" if is_launching else "idle"
+	var facing_suffix: String = Dir.anim_suffix(facing)
+	
+	# Protag part
+	var armed_state: String = "armed" if show_sword else "unarmed"
+	protag_sprite.play(armed_state + "_" + motion + "_" + facing_suffix)
+	
+	# Sword part
+	if show_sword:
+		var sword_suffix: String = Dir.anim_suffix(attachment_offset)
+		sword_sprite.play(motion + "_" + sword_suffix + "_plr_" + facing_suffix)
+		
+		sword_sprite.position = attachment_offset * 8
