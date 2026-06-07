@@ -33,7 +33,7 @@ enum Outcome {PROCEED, BLOCKED_WALL, STRUCK_ENTITY}
 # Core funcs
 func _ready():
 	if facing == Vector2i.ZERO:
-		print("No facing direction set for " + str(self) + "!")
+		print("WARNING: No facing direction set for " + str(self) + "!")
 		return
 	
 	# Set owning room

@@ -4,19 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bybn273sigipb" path="res://gameplay/floors_and_rooms/tileset_world.tres" id="2_u8wxj"]
 [ext_resource type="PackedScene" uid="uid://chg8lgqq6pcoc" path="res://gameplay/portals/portal.tscn" id="3_f2jk2"]
 [ext_resource type="PackedScene" uid="uid://d38c71snlkegd" path="res://gameplay/portals/destination.tscn" id="4_bc0cm"]
-[ext_resource type="PackedScene" uid="uid://dwpyrxyfavb5q" path="res://gameplay/entities/enemies/enemy_DEBUG/enemy_DEBUG.tscn" id="5_u8wxj"]
-[ext_resource type="Script" uid="uid://bwo3qrfyitm4w" path="res://gameplay/entities/actions/enemy_action.gd" id="6_c4580"]
-[ext_resource type="Script" uid="uid://c3sm0wqf7s80v" path="res://gameplay/entities/actions/action_move_steps.gd" id="7_se2w2"]
-
-[sub_resource type="Resource" id="Resource_bcdwi"]
-script = ExtResource("7_se2w2")
-steps = 3
-metadata/_custom_type_script = "uid://c3sm0wqf7s80v"
-
-[sub_resource type="Resource" id="Resource_h0nsr"]
-script = ExtResource("7_se2w2")
-steps = 3
-metadata/_custom_type_script = "uid://c3sm0wqf7s80v"
+[ext_resource type="PackedScene" uid="uid://dwpyrxyfavb5q" path="res://gameplay/entities/enemies/enemy_snail.tscn" id="5_u8wxj"]
 
 [node name="RoomDebug" type="Node2D" unique_id=1962429657]
 script = ExtResource("1_q1ayy")
@@ -56,11 +44,10 @@ position = Vector2(232, 56)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=707040045]
 
-[node name="EnemyDebug" parent="Enemies" unique_id=673175981 instance=ExtResource("5_u8wxj")]
-position = Vector2(88, 104)
-actions = Array[ExtResource("6_c4580")]([SubResource("Resource_bcdwi")])
-
-[node name="EnemyDebug2" parent="Enemies" unique_id=423255303 instance=ExtResource("5_u8wxj")]
-position = Vector2(168, 184)
-actions = Array[ExtResource("6_c4580")]([SubResource("Resource_h0nsr")])
+[node name="EnemySnail" parent="Enemies" unique_id=673175981 instance=ExtResource("5_u8wxj")]
+position = Vector2(152, 88)
 start_facing = 2
+
+[node name="EnemySnail2" parent="Enemies" unique_id=635374375 instance=ExtResource("5_u8wxj")]
+position = Vector2(72, 168)
+start_facing = 3

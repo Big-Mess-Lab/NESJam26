@@ -123,7 +123,6 @@ func can_launch() -> bool:
 func _try_launch():
 	# Check for interactable GridEntity
 	var front_cell: Vector2i = current_cell + facing
-	print("Facing cell", front_cell, " contents: ", room.get_cell_contents(front_cell), " in room ", room)
 	for e in room.get_cell_contents(front_cell):
 		if e.has_method("interact"):
 			e.interact(self)

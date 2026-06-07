@@ -1,38 +1,50 @@
 [gd_scene format=3 uid="uid://dwpyrxyfavb5q"]
 
-[ext_resource type="Script" uid="uid://dy7hxapqrr5d0" path="res://gameplay/entities/enemies/enemy.gd" id="1_fnfpj"]
-[ext_resource type="Texture2D" uid="uid://c6wvsr4qse642" path="res://assets/characters/spritesheet_snail.png" id="2_fnfpj"]
+[ext_resource type="Script" uid="uid://dy7hxapqrr5d0" path="res://gameplay/entities/enemies/enemy.gd" id="1_ftj81"]
+[ext_resource type="Script" uid="uid://bwo3qrfyitm4w" path="res://gameplay/entities/actions/enemy_action.gd" id="2_jgd41"]
+[ext_resource type="Script" uid="uid://c3sm0wqf7s80v" path="res://gameplay/entities/actions/action_move_steps.gd" id="3_fgoud"]
+[ext_resource type="Script" uid="uid://c4bmu286d4av8" path="res://gameplay/entities/actions/action_turn_random.gd" id="4_tdv4e"]
+[ext_resource type="Texture2D" uid="uid://c6wvsr4qse642" path="res://assets/characters/spritesheet_snail.png" id="5_b3d54"]
+
+[sub_resource type="Resource" id="Resource_w7u5e"]
+script = ExtResource("3_fgoud")
+metadata/_custom_type_script = "uid://c3sm0wqf7s80v"
+
+[sub_resource type="Resource" id="Resource_qelu7"]
+script = ExtResource("4_tdv4e")
+avoid_current = false
+metadata/_custom_type_script = "uid://c4bmu286d4av8"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0da2h"]
-atlas = ExtResource("2_fnfpj")
+atlas = ExtResource("5_b3d54")
 region = Rect2(0, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cudti"]
-atlas = ExtResource("2_fnfpj")
+atlas = ExtResource("5_b3d54")
 region = Rect2(16, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1sbel"]
-atlas = ExtResource("2_fnfpj")
+atlas = ExtResource("5_b3d54")
 region = Rect2(0, 32, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wx2d1"]
-atlas = ExtResource("2_fnfpj")
+atlas = ExtResource("5_b3d54")
 region = Rect2(16, 32, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrdcf"]
-atlas = ExtResource("2_fnfpj")
+atlas = ExtResource("5_b3d54")
 region = Rect2(0, 64, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5u15g"]
-atlas = ExtResource("2_fnfpj")
+atlas = ExtResource("5_b3d54")
 region = Rect2(16, 64, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ue80e"]
-atlas = ExtResource("2_fnfpj")
+atlas = ExtResource("5_b3d54")
 region = Rect2(0, 96, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6gphs"]
-atlas = ExtResource("2_fnfpj")
+atlas = ExtResource("5_b3d54")
 region = Rect2(16, 96, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6gphs"]
@@ -82,8 +94,9 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="EnemyDebug" type="Node2D" unique_id=673175981]
-script = ExtResource("1_fnfpj")
+[node name="EnemySnail" type="Node2D" unique_id=673175981]
+script = ExtResource("1_ftj81")
+actions = Array[ExtResource("2_jgd41")]([SubResource("Resource_w7u5e"), SubResource("Resource_qelu7")])
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1191839487]
 sprite_frames = SubResource("SpriteFrames_6gphs")

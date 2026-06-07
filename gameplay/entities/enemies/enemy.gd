@@ -34,31 +34,49 @@ func begin_turn():
 	last_step_result = null
 
 func advance_step(duration: float) -> StepResult:
-	# Empty action sequence, or overrun
-	if actions.is_empty() or cursor >= actions.size():
-		is_launching = false
-		return StepResult.new(Outcome.PROCEED, [])
-	
-	var action: EnemyAction = actions[cursor]
+	var guard: int = 0
 	last_step_result = StepResult.new(Outcome.PROCEED, [])
-	var status: EnemyAction.Status = action.run(self, duration)
 	
-	match status:
-		EnemyAction.Status.RUNNING:
-			# Same action next beat
-			pass 
-		EnemyAction.Status.COMPLETED:
-			# Move to next action
-			cursor += 1
-			action_counter = 0
-		EnemyAction.Status.INTERRUPTED:
-			# Move to next action, check if interrupted
-			cursor += 1
-			action_counter = 0
-			if action.interrupt_sequence_if_blocked:
-				is_launching = false
-			elif cursor >= actions.size():
-				is_launching = false
+	while true:
+		# guard against exceeding length
+		guard += 1
+		if guard > actions.size() + 1:
+			print("WARNING: Immediate action loop exceeded sequence length")
+
+		if actions.is_empty() or cursor >= actions.size():
+			is_launching = false
+			break
+		
+		var action: EnemyAction = actions[cursor]
+		var status: EnemyAction.Status = action.run(self, duration)
+		var advanced: bool = false
+		
+		match status:
+			EnemyAction.Status.RUNNING:
+				# Same action
+				pass 
+			EnemyAction.Status.COMPLETED:
+				# Move to next action
+				cursor += 1
+				action_counter = 0
+				advanced = true
+			EnemyAction.Status.INTERRUPTED:
+				# Move to next action, check if interrupted
+				cursor += 1
+				action_counter = 0
+				if action.interrupt_sequence_if_blocked:
+					is_launching = false
+		
+		if cursor >= actions.size():
+			is_launching = false
+		
+		# Check for immediacy, skip ending the beat if true
+		if status == EnemyAction.Status.RUNNING:
+			break
+		if !action.immediate:
+			break
+		if !is_launching:
+			break
 	
 	return last_step_result
 

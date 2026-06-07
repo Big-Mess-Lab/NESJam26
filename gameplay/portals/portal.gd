@@ -26,16 +26,13 @@ func _ready():
 func _process(_delta):
 	if !transitioning:
 		return
-	print("Portal processing, transition_done=", parent_floor.transition_done)
 	if parent_floor.transition_done:
 		_move_player()
 
 func interact(striker):
-	print("Portal interacted")
 	_teleport()
 
 func _teleport():
-	print("Teleport, floow=", parent_floor)
 	parent_floor.transition_to_room(destination_room)
 	transitioning = true
 
