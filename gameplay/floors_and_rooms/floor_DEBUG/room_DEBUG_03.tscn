@@ -4,19 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bybn273sigipb" path="res://gameplay/floors_and_rooms/tileset_world.tres" id="2_5u5jw"]
 [ext_resource type="PackedScene" uid="uid://chg8lgqq6pcoc" path="res://gameplay/portals/portal.tscn" id="3_t7aoa"]
 [ext_resource type="PackedScene" uid="uid://d38c71snlkegd" path="res://gameplay/portals/destination.tscn" id="4_i3hs0"]
-[ext_resource type="PackedScene" uid="uid://dwpyrxyfavb5q" path="res://gameplay/entities/enemies/enemy_DEBUG/enemy_DEBUG.tscn" id="5_5u5jw"]
-[ext_resource type="Script" uid="uid://bwo3qrfyitm4w" path="res://gameplay/entities/actions/enemy_action.gd" id="6_i3hs0"]
-[ext_resource type="Script" uid="uid://c3sm0wqf7s80v" path="res://gameplay/entities/actions/action_move_steps.gd" id="7_nrkge"]
-
-[sub_resource type="Resource" id="Resource_kbij0"]
-script = ExtResource("7_nrkge")
-steps = 3
-metadata/_custom_type_script = "uid://c3sm0wqf7s80v"
-
-[sub_resource type="Resource" id="Resource_i3hs0"]
-script = ExtResource("7_nrkge")
-steps = 3
-metadata/_custom_type_script = "uid://c3sm0wqf7s80v"
+[ext_resource type="PackedScene" uid="uid://dwpyrxyfavb5q" path="res://gameplay/entities/enemies/enemy_snail.tscn" id="5_5u5jw"]
 
 [node name="RoomDebug" type="Node2D" unique_id=1962429657]
 script = ExtResource("1_8vcnx")
@@ -56,12 +44,6 @@ position = Vector2(216, 200)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=970637273]
 
-[node name="EnemyDebug" parent="Enemies" unique_id=673175981 instance=ExtResource("5_5u5jw")]
-position = Vector2(56, 72)
-actions = Array[ExtResource("6_i3hs0")]([SubResource("Resource_kbij0")])
-start_facing = 0
-
-[node name="EnemyDebug2" parent="Enemies" unique_id=1135704271 instance=ExtResource("5_5u5jw")]
-position = Vector2(200, 184)
-actions = Array[ExtResource("6_i3hs0")]([SubResource("Resource_i3hs0")])
-start_facing = 0
+[node name="EnemySnail" parent="Enemies" unique_id=673175981 instance=ExtResource("5_5u5jw")]
+position = Vector2(72, 56)
+start_facing = 3

@@ -33,7 +33,7 @@ enum Outcome {PROCEED, BLOCKED_WALL, STRUCK_ENTITY}
 # Core funcs
 func _ready():
 	if facing == Vector2i.ZERO:
-		print("No facing direction set for " + str(self) + "!")
+		print("WARNING: No facing direction set for " + str(self) + "!")
 		return
 	
 	# Set owning room
@@ -123,7 +123,7 @@ func blocks(other: GridEntity) -> bool: # Am I blocked by other?
 
 func _start_move_tween(beat_duration: float):
 	var tween: Tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_trans(Tween.TRANS_LINEAR)#TRANS_SINE)
 	tween.tween_property(self, "global_position", Gameplay.cell_to_local(current_cell), beat_duration)
 	tween.finished.connect(_on_step_finished)
 
@@ -144,6 +144,8 @@ func advance_step(beat_duration: float) -> StepResult:
 	var result: StepResult = try_step(facing, beat_duration)
 	if result.outcome != Outcome.PROCEED:
 		is_launching = false
+		if self == Gameplay.protag:
+			Gameplay.protag._update_sprites()
 	
 	return result
 
