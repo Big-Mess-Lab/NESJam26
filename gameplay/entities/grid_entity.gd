@@ -26,6 +26,7 @@ signal step_finished
 ## Attachment
 @export var has_attachment: bool = false
 var attachment_offset: Vector2i = Vector2i.ZERO
+var attachment_cell: Vector2i
 
 ## Occupancy
 enum Outcome {PROCEED, BLOCKED_WALL, STRUCK_ENTITY}
@@ -41,7 +42,7 @@ func _ready():
 	
 	# Snap to cell, register to room, set z_index, set spawn cell
 	Gameplay.snap_current_cell(self)
-	room.register(self, current_cell)
+	_register_self()
 	z_index = layer + 1 # map tilesets are 0 by default, need to be above
 	spawn_cell = current_cell
 
@@ -67,52 +68,57 @@ func try_step(direction: Vector2i, beat_duration: float) -> StepResult:
 		target_attachment_contents = room.get_cell_contents(target_attachment_cell)
 	
 	# Check for walls, early return if there's any wall
-	for e in target_cell_contents:
-		if e.is_wall == true:
+	for r in target_cell_contents:
+		if r.entity.is_wall == true:
 			return StepResult.new(Outcome.BLOCKED_WALL, [])
 	
 	if has_attachment:
-		for e in target_attachment_contents:
-			if e.is_wall == true:
+		for r in target_attachment_contents:
+			if r.entity.is_wall == true:
 				return StepResult.new(Outcome.BLOCKED_WALL, [])
 	
 	# Scan through for target cell contents, append entities
 	var strikes: Array = []
 	
-	for e in target_cell_contents:
-		if e == self:
+	for r in target_cell_contents:
+		if r.entity == self:
 			continue
-		if blocks(e):
-			strikes.append({"entity": e, "striker": self, "direction": direction, "part": StepResult.Part.BODY})
+		if blocks(r.entity):
+			strikes.append({"entity": r.entity, "striker": self, "direction": direction, "striker_part": StepResult.Part.BODY, "target_part": r.part})
 	
 	if has_attachment:
-		for e in target_attachment_contents:
-			if e == self:
+		for r in target_attachment_contents:
+			if r.entity == self:
 				continue
-			if blocks(e):
-				strikes.append({"entity": e, "striker": self, "direction": direction, "part": StepResult.Part.ATTACHMENT})
+			if blocks(r.entity):
+				strikes.append({"entity": r.entity, "striker": self, "direction": direction, "striker_part": StepResult.Part.ATTACHMENT, "target_part": r.part})
 	
 	# Gather results if not empty, return results
 	if !strikes.is_empty():
 		return StepResult.new(Outcome.STRUCK_ENTITY, strikes)
 	
 	# Initiate move if empty, return PROCEED
-	
 	is_animating = true
-	room.move_occupant(current_cell, target_cell, self)
+	# Move body record
+	room.move_occupant(current_cell, target_cell, self, StepResult.Part.BODY)
+	# Move attachment record, if any
+	if has_attachment:
+		var new_attachment_cell: Vector2i = target_cell + attachment_offset
+		room.move_occupant(attachment_cell, new_attachment_cell, self, StepResult.Part.ATTACHMENT)
+		attachment_cell = new_attachment_cell
 	current_cell = target_cell
 	distance_this_launch += 1
 	_start_move_tween(beat_duration)
 	return StepResult.new(Outcome.PROCEED, [])
 
 func death():
-	room.unregister(self, current_cell)
+	_unregister_self()
 	is_alive = false
 	# disable visuals
 
 func respawn():
 	current_cell = spawn_cell
-	room.register(self, current_cell)
+	_register_self()
 	is_alive = true
 	# enable visuals
 
@@ -154,10 +160,32 @@ func on_struck(strike):
 	pass
 
 func move_to_room(new_room: Node, new_global_pos: Vector2):
-	room.unregister(self, current_cell)
+	_unregister_self()
 	get_parent().remove_child(self)
 	new_room.add_child(self)
 	room = new_room
 	global_position = new_global_pos
 	Gameplay.snap_current_cell(self)
-	room.register(self, current_cell)
+	_register_self()
+
+func _register_self():
+	room.register(self, current_cell, StepResult.Part.BODY)
+	if has_attachment:
+		attachment_cell = current_cell + attachment_offset
+		room.register(self, attachment_cell, StepResult.Part.ATTACHMENT)
+
+func _unregister_self():
+	room.unregister(self, current_cell, StepResult.Part.BODY)
+	if has_attachment:
+		room.unregister(self, attachment_cell, StepResult.Part.ATTACHMENT)
+
+func _set_attachment(active: bool, offset: Vector2i):
+	if has_attachment:
+		room.unregister(self, attachment_cell, StepResult.Part.ATTACHMENT)
+	
+	has_attachment = active
+	attachment_offset = offset
+	
+	if has_attachment:
+		attachment_cell = current_cell + attachment_offset
+		room.register(self, attachment_cell, StepResult.Part.ATTACHMENT)

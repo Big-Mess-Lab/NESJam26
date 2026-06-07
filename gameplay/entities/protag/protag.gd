@@ -79,8 +79,8 @@ func _update_sword(dir: Vector2i):
 	var sword_cell: Vector2i = current_cell + dir
 	var collided: bool = false
 	
-	for e in room.get_cell_contents(sword_cell):
-		if e.is_wall:
+	for r in room.get_cell_contents(sword_cell):
+		if r.entity.is_wall:
 			collided = true
 			break
 	
@@ -92,8 +92,7 @@ func _update_sword(dir: Vector2i):
 		_toggle_show_sword()
 	
 	# Commit aim
-	attachment_offset = dir
-	has_attachment = true
+	_set_attachment(true, dir)
 	current_sword = dir
 	_update_sprites()
 	last_input_b = false
@@ -103,22 +102,22 @@ func _toggle_show_sword():
 	sword_sprite.visible = show_sword
 	
 	if !show_sword:
-		has_attachment = false
+		_set_attachment(false, Vector2i.ZERO)
 
 func can_launch() -> bool:
 	# Protag Body check
-	for e in room.get_cell_contents(current_cell + facing):
-		if e == self:
+	for r in room.get_cell_contents(current_cell + facing):
+		if r.entity == self:
 			continue
-		if blocks(e):
+		if blocks(r.entity):
 			return false
 	
 	# Sword check
 	if has_attachment:
-		for e in room.get_cell_contents(current_cell + attachment_offset + facing):
-			if e == self:
+		for r in room.get_cell_contents(current_cell + attachment_offset + facing):
+			if r.entity == self:
 				continue
-			if blocks(e):
+			if blocks(r.entity):
 				return false
 	
 	return true
@@ -126,9 +125,9 @@ func can_launch() -> bool:
 func _try_launch():
 	# Check for interactable GridEntity
 	var front_cell: Vector2i = current_cell + facing
-	for e in room.get_cell_contents(front_cell):
-		if e.has_method("interact"):
-			e.interact(self)
+	for r in room.get_cell_contents(front_cell):
+		if r.entity.has_method("interact"):
+			r.entity.interact(self)
 			return
 	
 	# Else, check for launch, and launch
@@ -140,8 +139,12 @@ func _try_launch():
 	TurnManager.start_turn()
 
 func on_struck(strike):
-	# Player loses life
-	print("Protag struck by ", strike["striker"], " from ", strike["direction"])
+	if strike["target_part"] == StepResult.Part.ATTACHMENT:
+		# Struck something with my sword
+		print("Enemy hit protag's SWORD, enemy should take damage")
+	else:
+		# I was hit, get damaged
+		print("Enemy hit protag's BODY, protag loses a life")
 
 func _update_sprites():
 	var motion: String = "move" if is_launching else "idle"

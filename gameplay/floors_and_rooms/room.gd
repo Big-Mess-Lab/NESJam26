@@ -16,27 +16,33 @@ var is_active: bool = false
 func _ready():
 	add_to_group("room")
 
-func register(entity: Node, cell: Vector2i):
+func register(entity: Node, cell: Vector2i, part: StepResult.Part):
 	if !occupants.has(cell):
-		var new_array = [entity]
-		occupants[cell] = new_array
+		occupants[cell] = [{"entity": entity, "part": part}]
 	else:
-		if !occupants[cell].has(entity):
-			occupants[cell].append(entity)
+		for r in occupants[cell]:
+			if r.entity == entity and r.part == part:
+				return
+		occupants[cell].append({"entity": entity, "part": part})
 
-func unregister(entity: Node, cell: Vector2i):
-	occupants[cell].erase(entity)
+func unregister(entity: Node, cell: Vector2i, part: StepResult.Part):
+	if !occupants.has(cell):
+		return
+	for r in occupants[cell]:
+		if r.entity == entity and r.part == part:
+			occupants[cell].erase(r)
+			break
 	if occupants[cell].is_empty():
 		occupants.erase(cell)
 
-func move_occupant(from: Vector2i, to: Vector2i, entity: GridEntity):
-	unregister(entity, from)
-	register(entity, to)
+func move_occupant(from: Vector2i, to: Vector2i, entity: GridEntity, part: StepResult.Part):
+	unregister(entity, from, part)
+	register(entity, to, part)
 
 func get_cell_contents(cell: Vector2i) -> Array:
 	var result: Array = []
 	if walls.get_cell_source_id(cell) != -1:
-		result.append(GridEntity.get_wall())
+		result.append({"entity": GridEntity.get_wall(), "part": StepResult.Part.BODY})
 	if occupants.has(cell):
 		result.append_array(occupants[cell])
 	

@@ -22,10 +22,6 @@ func _update_facing(dir: Vector2i):
 	facing = dir
 	sprite.play(Dir.anim_suffix(dir))
 
-func on_struck(strike):
-	# Add collision events here
-	print("Enemy struck by ", strike["striker"], " on ", strike["part"])
-
 func begin_turn():
 	is_launching = true
 	distance_this_launch = 0
@@ -82,3 +78,12 @@ func advance_step(duration: float) -> StepResult:
 
 func _pick_new_direction():
 	_update_facing(Dir.ALL.pick_random())
+
+func on_struck(strike):
+	if strike["striker_part"] == StepResult.Part.ATTACHMENT:
+		print("Protag's SWORD hit enemy, enemy takes damage")
+		#  _take_damage(1)
+	else:
+		print("Protag's BODY hit enemy, protag loses a life")
+		# strike["striker"]._lose_life()
+	pass

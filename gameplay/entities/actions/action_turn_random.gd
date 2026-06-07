@@ -23,10 +23,10 @@ func run(enemy, duration: float) -> Status:
 	return Status.COMPLETED
 
 func _is_blocked(enemy, dir: Vector2i) -> bool:
-	for e in enemy.room.get_cell_contents(enemy.current_cell + dir):
-		if e == enemy:
+	for r in enemy.room.get_cell_contents(enemy.current_cell + dir):
+		if r.entity == enemy:
 			continue
-		if enemy.blocks(e):
+		if enemy.blocks(r.entity):
 			return true
 	
 	return false
