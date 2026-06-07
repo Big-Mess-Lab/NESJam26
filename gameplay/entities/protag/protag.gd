@@ -55,6 +55,9 @@ func _input(event: InputEvent):
 			_press_facing(Dir.LEFT)
 		if event.is_action_pressed("right"):
 			_press_facing(Dir.RIGHT)
+	
+	if event.is_action_pressed("debug_0"):
+		TurnManager.start_turn()
 
 func _press_facing(dir: Vector2i):
 	var is_repeat: bool = dir == last_move_direction

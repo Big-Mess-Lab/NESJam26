@@ -123,7 +123,7 @@ func blocks(other: GridEntity) -> bool: # Am I blocked by other?
 
 func _start_move_tween(beat_duration: float):
 	var tween: Tween = create_tween()
-	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_trans(Tween.TRANS_LINEAR)#TRANS_SINE)
 	tween.tween_property(self, "global_position", Gameplay.cell_to_local(current_cell), beat_duration)
 	tween.finished.connect(_on_step_finished)
 
