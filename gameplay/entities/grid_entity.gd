@@ -9,6 +9,10 @@ var spawn_cell: Vector2i
 var distance_this_launch: int = 0
 var is_launching: bool = false
 
+# Health & damage
+@export var max_health: int = 1
+var health: int
+
 ## Direction
 var facing: Vector2i
 
@@ -19,8 +23,6 @@ static var WALL # wall flag
 var is_wall: bool = false
 var is_animating: bool = false
 var is_alive: bool = true
-var respawn_on_reenter: bool = false
-var respawn_on_player_death: bool = true # if both are false, it's a one-shot enemy
 signal step_finished
 
 ## Attachment
@@ -39,6 +41,9 @@ func _ready():
 	
 	# Set owning room
 	room = _find_room()
+	
+	# Set health
+	health = max_health
 	
 	# Snap to cell, register to room, set z_index, set spawn cell
 	Gameplay.snap_current_cell(self)
@@ -84,14 +89,14 @@ func try_step(direction: Vector2i, beat_duration: float) -> StepResult:
 		if r.entity == self:
 			continue
 		if blocks(r.entity):
-			strikes.append({"entity": r.entity, "striker": self, "direction": direction, "striker_part": StepResult.Part.BODY, "target_part": r.part})
+			strikes.append({"entity": r.entity, "striker": self, "direction": direction, "striker_part": StepResult.Part.BODY, "target_part": r.part, "target_cell": target_cell})
 	
 	if has_attachment:
 		for r in target_attachment_contents:
 			if r.entity == self:
 				continue
 			if blocks(r.entity):
-				strikes.append({"entity": r.entity, "striker": self, "direction": direction, "striker_part": StepResult.Part.ATTACHMENT, "target_part": r.part})
+				strikes.append({"entity": r.entity, "striker": self, "direction": direction, "striker_part": StepResult.Part.ATTACHMENT, "target_part": r.part, "target_cell": target_attachment_cell})
 	
 	# Gather results if not empty, return results
 	if !strikes.is_empty():
@@ -111,16 +116,10 @@ func try_step(direction: Vector2i, beat_duration: float) -> StepResult:
 	_start_move_tween(beat_duration)
 	return StepResult.new(Outcome.PROCEED, [])
 
-func death():
+func death(at_cell: Vector2i = current_cell):
+	VFXPool.play("explo", at_cell, room)
 	_unregister_self()
 	is_alive = false
-	# disable visuals
-
-func respawn():
-	current_cell = spawn_cell
-	_register_self()
-	is_alive = true
-	# enable visuals
 
 func blocks(other: GridEntity) -> bool: # Am I blocked by other?
 	if other.is_wall:
@@ -189,3 +188,25 @@ func _set_attachment(active: bool, offset: Vector2i):
 	if has_attachment:
 		attachment_cell = current_cell + attachment_offset
 		room.register(self, attachment_cell, StepResult.Part.ATTACHMENT)
+
+func take_damage(amount: int = 1, at_cell: Vector2i = current_cell):
+	if !is_alive:
+		return
+	health -= amount
+	if health <= 0:
+		death(at_cell)
+	else:
+		_on_damaged(amount, at_cell)
+
+func _on_damaged(amount: int, at_cell: Vector2i = current_cell):
+	VFXPool.play("explo", at_cell, room)
+
+func respawn():
+	if is_alive:
+		_unregister_self()
+	current_cell = spawn_cell
+	is_alive = true
+	distance_this_launch = 0
+	health = max_health
+	_register_self()
+	global_position = room.to_global(Gameplay.cell_to_local(current_cell))

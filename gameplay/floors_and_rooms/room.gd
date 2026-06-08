@@ -47,3 +47,16 @@ func get_cell_contents(cell: Vector2i) -> Array:
 		result.append_array(occupants[cell])
 	
 	return result
+
+func reset_on_reenter():
+	for e in enemies.get_children():
+		if e is GridEntity and e.respawn_on_reenter:
+			e.respawn()
+
+func reset_on_player_death():
+	for e in enemies.get_children():
+		if e is GridEntity and e.respawn_on_player_death:
+			e.respawn()
+	for e in enemies.get_children():
+		if e is GridEntity and !e.is_alive and e.respawn_on_player_death:
+			e.respawn()

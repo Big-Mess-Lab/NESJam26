@@ -141,13 +141,9 @@ func _try_launch():
 
 func on_struck(strike):
 	if strike["target_part"] == StepResult.Part.ATTACHMENT:
-		# Struck something with my sword
-		print("Enemy hit protag's SWORD, enemy should take damage")
-		VFXPool.play("explo", strike["striker"].current_cell, room)
+		strike["striker"].take_damage(1, strike["target_cell"])
 	else:
-		# I was hit, get damaged
-		print("Enemy hit protag's BODY, protag loses a life")
-		VFXPool.play("explo", current_cell, room)
+		take_damage(1, strike["target_cell"])
 
 func _update_sprites():
 	var motion: String = "move" if is_launching else "idle"
