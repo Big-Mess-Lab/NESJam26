@@ -4,14 +4,29 @@
 
 [node name="Hud" type="CanvasLayer" unique_id=580020553]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=787044335]
+[node name="Panel" type="Panel" parent="." unique_id=1980410595]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_dheoj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=13137817]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer" unique_id=787044335]
+layout_mode = 2
 theme = ExtResource("1_dheoj")
-text = "what if it wasn't his fault? Then: we stopped. but what if, this is all just a font?! \"no!\", she screamed. lolwut ^_^ ~ >3<
-Taxes & Rollerskates "
+text = "Text Box demo right here!"
+scroll_active = false
