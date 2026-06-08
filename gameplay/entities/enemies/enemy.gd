@@ -85,7 +85,7 @@ func on_struck(strike):
 	if strike["striker_part"] == StepResult.Part.ATTACHMENT:
 		take_damage(1, strike["target_cell"])
 	else:
-		take_damage(1, strike["target_cell"])
+		strike["striker"].take_damage(1, strike["striker"].current_cell)
 
 func death(at_cell: Vector2i = current_cell):
 	sprite.visible = false

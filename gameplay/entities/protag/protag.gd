@@ -78,15 +78,16 @@ func _update_sword(dir: Vector2i):
 		return
 	
 	var sword_cell: Vector2i = current_cell + dir
-	var collided: bool = false
 	
+	var jab_target = null
 	for r in room.get_cell_contents(sword_cell):
+		if r.entity == self:
+			continue
 		if r.entity.is_wall:
-			collided = true
+			return
+		if blocks(r.entity):
+			jab_target = r.entity
 			break
-	
-	if collided:
-		return
 	
 	# Show sword if hidden
 	if !show_sword:
@@ -97,6 +98,23 @@ func _update_sword(dir: Vector2i):
 	current_sword = dir
 	_update_sprites()
 	last_input_b = false
+	
+	# Jab action, if enemy present
+	if jab_target != null:
+		_jab(jab_target, sword_cell, dir)
+
+func _jab(target, sword_cell: Vector2i, dir: Vector2i):
+	var strike = {
+		"entity": target,
+		"striker": self,
+		"direction": dir,
+		"striker_part": StepResult.Part.ATTACHMENT,
+		"target_part": StepResult.Part.BODY,
+		"target_cell": sword_cell
+	}
+	target.on_struck(strike)
+	is_launching = false
+	TurnManager.start_turn()
 
 func _toggle_show_sword():
 	show_sword = !show_sword

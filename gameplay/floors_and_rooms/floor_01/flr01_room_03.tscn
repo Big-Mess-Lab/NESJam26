@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d38c71snlkegd" path="res://gameplay/portals/destination.tscn" id="4_i3hs0"]
 [ext_resource type="PackedScene" uid="uid://dwpyrxyfavb5q" path="res://gameplay/entities/enemies/enemy_snail.tscn" id="5_5u5jw"]
 
-[node name="RoomDebug" type="Node2D" unique_id=1962429657]
+[node name="Room03" type="Node2D" unique_id=1962429657]
 script = ExtResource("1_8vcnx")
 
 [node name="Floors" type="TileMapLayer" parent="." unique_id=155651981]
