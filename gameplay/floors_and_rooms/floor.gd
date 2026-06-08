@@ -23,6 +23,7 @@ func _ready():
 	# Init protag
 	Gameplay.protag = Gameplay.PROTAG_NODE.instantiate()
 	Gameplay.protag.position = active_room.to_local(active_spawn.global_position)
+	Gameplay.protag.max_health = 3
 	active_room.add_child(Gameplay.protag)
 
 func _process(delta):
@@ -48,6 +49,7 @@ func _transition_end():
 	active_room = transition_destination_room
 	transition_destination_room = null
 	transition_done = true
+	active_room.reset_on_reenter()
 
 func _transition(delta: float):
 	if transition_steps_taken < transition_steps_total:

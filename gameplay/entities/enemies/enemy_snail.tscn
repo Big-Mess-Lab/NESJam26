@@ -97,6 +97,7 @@ animations = [{
 [node name="EnemySnail" type="Node2D" unique_id=673175981]
 script = ExtResource("1_ftj81")
 actions = Array[ExtResource("2_jgd41")]([SubResource("Resource_w7u5e"), SubResource("Resource_qelu7")])
+respawn_on_reenter = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1191839487]
 sprite_frames = SubResource("SpriteFrames_6gphs")

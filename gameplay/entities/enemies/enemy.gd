@@ -5,6 +5,8 @@ extends GridEntity
 var cursor: int = 0
 var last_step_result: StepResult
 var action_counter: int = 0
+@export var respawn_on_reenter: bool = false
+@export var respawn_on_player_death: bool = true # if both are false, it's a one-shot enemy
 
 # Authoring
 @export var start_facing: Dir.Facing = Dir.Facing.DOWN
@@ -81,9 +83,20 @@ func _pick_new_direction():
 
 func on_struck(strike):
 	if strike["striker_part"] == StepResult.Part.ATTACHMENT:
-		print("Protag's SWORD hit enemy, enemy takes damage")
-		VFXPool.play("explo", strike["entity"].current_cell, room)
+		take_damage(1, strike["target_cell"])
 	else:
-		print("Protag's BODY hit enemy, protag loses a life")
-		VFXPool.play("explo", Gameplay.protag.current_cell, room)
-	pass
+		strike["striker"].take_damage(1, strike["striker"].current_cell)
+
+func death(at_cell: Vector2i = current_cell):
+	sprite.visible = false
+	is_launching = false
+	super.death(at_cell)
+	if !respawn_on_reenter and !respawn_on_player_death:
+		queue_free()
+
+func respawn():
+	super.respawn()
+	sprite.visible = true
+	_update_facing(Dir.from_facing(start_facing))
+	cursor = 0
+	action_counter = 0

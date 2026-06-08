@@ -16,7 +16,7 @@ func start_turn():
 func _begin_enemies():
 	var room = Gameplay.current_floor.active_room
 	for e in room.enemies.get_children():
-		if e is GridEntity and e.has_method("begin_turn"):
+		if e is GridEntity and e.is_alive and e.has_method("begin_turn"):
 			e.begin_turn()
 
 func _gather_movers() -> Array:
@@ -28,7 +28,7 @@ func _gather_movers() -> Array:
 	
 	# Enemies
 	for e in room.enemies.get_children():
-		if e is GridEntity and e.is_launching:
+		if e is GridEntity and e.is_alive and e.is_launching:
 			movers.append(e)
 	
 	# Enemy registration order == launching order
