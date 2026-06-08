@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bh5t42jk7hxv6"]
+
+[ext_resource type="Script" uid="uid://dnif3f0ys7b0j" path="res://gameplay/vfx/oneshot_anims/vfx_pool.gd" id="1_u6fnl"]
+
+[node name="VFXPool" type="Node" unique_id=1086657804]
+script = ExtResource("1_u6fnl")

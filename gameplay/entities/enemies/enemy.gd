@@ -82,8 +82,8 @@ func _pick_new_direction():
 func on_struck(strike):
 	if strike["striker_part"] == StepResult.Part.ATTACHMENT:
 		print("Protag's SWORD hit enemy, enemy takes damage")
-		#  _take_damage(1)
+		VFXPool.play("explo", strike["entity"].current_cell, room)
 	else:
 		print("Protag's BODY hit enemy, protag loses a life")
-		# strike["striker"]._lose_life()
+		VFXPool.play("explo", Gameplay.protag.current_cell, room)
 	pass

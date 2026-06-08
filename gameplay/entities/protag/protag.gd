@@ -30,6 +30,7 @@ func _input(event: InputEvent):
 		move_aim_mode = true
 		if last_input_b and show_sword:
 			_toggle_show_sword()
+			_update_sprites()
 	last_input_b = false
 	if event.is_action_pressed("b"):
 		move_aim_mode = false
@@ -117,7 +118,7 @@ func can_launch() -> bool:
 		for r in room.get_cell_contents(current_cell + attachment_offset + facing):
 			if r.entity == self:
 				continue
-			if blocks(r.entity):
+			if r.entity.is_wall:
 				return false
 	
 	return true
@@ -142,9 +143,11 @@ func on_struck(strike):
 	if strike["target_part"] == StepResult.Part.ATTACHMENT:
 		# Struck something with my sword
 		print("Enemy hit protag's SWORD, enemy should take damage")
+		VFXPool.play("explo", strike["striker"].current_cell, room)
 	else:
 		# I was hit, get damaged
 		print("Enemy hit protag's BODY, protag loses a life")
+		VFXPool.play("explo", current_cell, room)
 
 func _update_sprites():
 	var motion: String = "move" if is_launching else "idle"

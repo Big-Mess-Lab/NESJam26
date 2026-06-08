@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://db2072p7qatcu"]
+
+[ext_resource type="Texture2D" uid="uid://dmaqtyep32ati" path="res://assets/placeholder/anim_explo.png" id="1_fgm0d"]
+[ext_resource type="Script" uid="uid://b6nq4skfdivl5" path="res://gameplay/vfx/oneshot_anims/vfx_oneshot_anim.gd" id="1_rucyd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24wn5"]
+atlas = ExtResource("1_fgm0d")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn8hb"]
+atlas = ExtResource("1_fgm0d")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mdnu"]
+atlas = ExtResource("1_fgm0d")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhj00"]
+atlas = ExtResource("1_fgm0d")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jw3da"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24wn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rn8hb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mdnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhj00")
+}],
+"loop": false,
+"name": &"explo",
+"speed": 16.0
+}]
+
+[node name="VfxOneshotAnim" type="AnimatedSprite2D" unique_id=764628988]
+z_index = 4
+sprite_frames = SubResource("SpriteFrames_jw3da")
+animation = &"explo"
+script = ExtResource("1_rucyd")
