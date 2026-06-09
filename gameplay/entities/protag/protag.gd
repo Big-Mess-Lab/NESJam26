@@ -58,6 +58,7 @@ func _input(event: InputEvent):
 			_press_facing(Dir.RIGHT)
 	
 	if event.is_action_pressed("debug_0"):
+		take_damage(1)
 		TurnManager.start_turn()
 
 func _press_facing(dir: Vector2i):
@@ -177,3 +178,7 @@ func _update_sprites():
 		sword_sprite.play(motion + "_" + sword_suffix + "_plr_" + facing_suffix)
 		
 		sword_sprite.position = attachment_offset * 8
+
+func take_damage(amount: int = 1, at_cell: Vector2i = current_cell):
+	super.take_damage(amount, at_cell)
+	HUD.update_hearts()

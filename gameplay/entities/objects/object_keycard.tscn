@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cuhmfdvleccmy"]
 
+[ext_resource type="Script" uid="uid://uwd6itjymcag" path="res://gameplay/entities/objects/object_keycard.gd" id="1_lc4ux"]
 [ext_resource type="Texture2D" uid="uid://bb33y6u20cqie" path="res://assets/objects/spritesheet_keycard.png" id="1_vadna"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lc4ux"]
@@ -75,9 +76,14 @@ animations = [{
 }]
 
 [node name="ObjectKeycard" type="Node2D" unique_id=1628013177]
+script = ExtResource("1_lc4ux")
+max_health = null
+layer = null
+has_attachment = null
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=520429057]
 sprite_frames = SubResource("SpriteFrames_5brm4")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.14390406
+frame = 6
+frame_progress = 0.052379116

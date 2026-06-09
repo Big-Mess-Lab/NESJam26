@@ -7,6 +7,7 @@ var last_step_result: StepResult
 var action_counter: int = 0
 @export var respawn_on_reenter: bool = false
 @export var respawn_on_player_death: bool = true # if both are false, it's a one-shot enemy
+@export var points_on_death: int = 150
 
 # Authoring
 @export var start_facing: Dir.Facing = Dir.Facing.DOWN
@@ -90,6 +91,8 @@ func on_struck(strike):
 func death(at_cell: Vector2i = current_cell):
 	sprite.visible = false
 	is_launching = false
+	Gameplay.score += points_on_death
+	HUD.update_score()
 	super.death(at_cell)
 	if !respawn_on_reenter and !respawn_on_player_death:
 		queue_free()

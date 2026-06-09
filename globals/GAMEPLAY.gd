@@ -8,6 +8,10 @@ const PROTAG_NODE = preload("uid://1ip0vr8umpa0")
 var protag: Node2D
 var current_floor: Node2D
 
+# Vars
+var score: int = 0
+var keycards: int = 0
+
 # Functions
 func get_tile_coordinate(px_coordinate: Vector2) -> Vector2i:
 	if px_coordinate.x > 256 or px_coordinate.y > 240 or px_coordinate.x < 0 or px_coordinate.y < 0:

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Gameplay="*uid://b4e1xb7wpwlet"
 TurnManager="*uid://daq3prp1x5hpd"
 VFXPool="*uid://bh5t42jk7hxv6"
+HUD="*uid://bpimy05vglr74"
 
 [display]
 
