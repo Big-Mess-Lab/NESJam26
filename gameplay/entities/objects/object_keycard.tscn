@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cuhmfdvleccmy"]
+
+[ext_resource type="Texture2D" uid="uid://bb33y6u20cqie" path="res://assets/objects/spritesheet_keycard.png" id="1_vadna"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lc4ux"]
+atlas = ExtResource("1_vadna")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy5gn"]
+atlas = ExtResource("1_vadna")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qb8y"]
+atlas = ExtResource("1_vadna")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul0yn"]
+atlas = ExtResource("1_vadna")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv5lj"]
+atlas = ExtResource("1_vadna")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4oyr"]
+atlas = ExtResource("1_vadna")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2168s"]
+atlas = ExtResource("1_vadna")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5brm4"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_lc4ux")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_dy5gn")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_6qb8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul0yn")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_xv5lj")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_p4oyr")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_2168s")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_p4oyr")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_xv5lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul0yn")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_6qb8y")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_dy5gn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="ObjectKeycard" type="Node2D" unique_id=1628013177]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=520429057]
+sprite_frames = SubResource("SpriteFrames_5brm4")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.14390406

@@ -1,19 +1,97 @@
 [gd_scene format=3 uid="uid://bpimy05vglr74"]
 
 [ext_resource type="Theme" uid="uid://bepo0navlm3v2" path="res://gameplay/interface/main_theme.tres" id="1_dheoj"]
+[ext_resource type="Texture2D" uid="uid://cf4djv423nxrj" path="res://assets/interface/interface_atlas.png" id="2_5076n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l2ig"]
+atlas = ExtResource("2_5076n")
+region = Rect2(0, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81q5r"]
+atlas = ExtResource("2_5076n")
+region = Rect2(8, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn5po"]
+atlas = ExtResource("2_5076n")
+region = Rect2(16, 24, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ls165"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l2ig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81q5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn5po")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81q5r")
+}],
+"loop": true,
+"name": &"arrow",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5076n"]
+atlas = ExtResource("2_5076n")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls165"]
+atlas = ExtResource("2_5076n")
+region = Rect2(0, 0, 8, 8)
 
 [node name="Hud" type="CanvasLayer" unique_id=580020553]
 
-[node name="Panel" type="Panel" parent="." unique_id=1980410595]
-anchors_preset = 10
+[node name="TextBox" type="Panel" parent="." unique_id=1980410595]
+anchors_preset = -1
+anchor_top = 0.73300004
 anchor_right = 1.0
-offset_bottom = 32.0
+anchor_bottom = 1.0
+offset_top = 0.07998657
+offset_bottom = -8.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("1_dheoj")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=13137817]
+[node name="MarginContainer" type="MarginContainer" parent="TextBox" unique_id=13137817]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextField" type="RichTextLabel" parent="TextBox/MarginContainer" unique_id=787044335]
+layout_mode = 2
+theme = ExtResource("1_dheoj")
+text = "Text Box demo right here! with two lines of text and sometimes even three!?"
+scroll_active = false
+
+[node name="ContinueArrow" type="AnimatedSprite2D" parent="TextBox/MarginContainer" unique_id=1292609423]
+position = Vector2(240, 40)
+sprite_frames = SubResource("SpriteFrames_ls165")
+animation = &"arrow"
+frame_progress = 0.7086343
+offset = Vector2(4, 4)
+
+[node name="TopHud" type="ColorRect" parent="." unique_id=863437161]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.133
+offset_bottom = 0.07999992
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="TopHud" unique_id=786594835]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,8 +103,130 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer" unique_id=787044335]
+[node name="HBoxContainer" type="HBoxContainer" parent="TopHud/MarginContainer" unique_id=2069429091]
 layout_mode = 2
 theme = ExtResource("1_dheoj")
-text = "Text Box demo right here!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopHud/MarginContainer/HBoxContainer" unique_id=1010109994]
+layout_mode = 2
+size_flags_horizontal = 2
+theme = ExtResource("1_dheoj")
+
+[node name="HBoxScore" type="HBoxContainer" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1461596639]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_dheoj")
+
+[node name="TextScore" type="RichTextLabel" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer/HBoxScore" unique_id=1285228128]
+clip_contents = false
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme = ExtResource("1_dheoj")
+text = "Score-"
 scroll_active = false
+
+[node name="TextScoreValue" type="RichTextLabel" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer/HBoxScore" unique_id=113253642]
+clip_contents = false
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "9999"
+
+[node name="HBoxFloor" type="HBoxContainer" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer" unique_id=203659037]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_dheoj")
+
+[node name="TextFloor" type="RichTextLabel" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer/HBoxFloor" unique_id=198730915]
+clip_contents = false
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme = ExtResource("1_dheoj")
+text = "Floor-"
+
+[node name="TextFloorValue" type="RichTextLabel" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer/HBoxFloor" unique_id=1530230627]
+clip_contents = false
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "2"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TopHud/MarginContainer/HBoxContainer" unique_id=1228136269]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_dheoj")
+
+[node name="HBoxLives" type="HBoxContainer" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=742570900]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_dheoj")
+
+[node name="TextLives" type="RichTextLabel" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer2/HBoxLives" unique_id=354539727]
+clip_contents = false
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme = ExtResource("1_dheoj")
+text = "Lives×"
+scroll_active = false
+
+[node name="HBoxLivesIcons" type="HBoxContainer" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer2/HBoxLives" unique_id=592086834]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureHeartContainer1" type="TextureRect" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer2/HBoxLives/HBoxLivesIcons" unique_id=1556480569]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5076n")
+
+[node name="TextureHeart1" type="TextureRect" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer2/HBoxLives/HBoxLivesIcons/TextureHeartContainer1" unique_id=887821225]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = SubResource("AtlasTexture_ls165")
+
+[node name="TextureHeartContainer2" type="TextureRect" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer2/HBoxLives/HBoxLivesIcons" unique_id=2109011349]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5076n")
+
+[node name="TextureHeart2" type="TextureRect" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer2/HBoxLives/HBoxLivesIcons/TextureHeartContainer2" unique_id=1984538795]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = SubResource("AtlasTexture_ls165")
+
+[node name="TextureHeartContainer3" type="TextureRect" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer2/HBoxLives/HBoxLivesIcons" unique_id=1246832191]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5076n")
+
+[node name="TextureHeart3" type="TextureRect" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer2/HBoxLives/HBoxLivesIcons/TextureHeartContainer3" unique_id=1987048842]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = SubResource("AtlasTexture_ls165")
+
+[node name="HBoxKeycard" type="HBoxContainer" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=20001756]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_dheoj")
+
+[node name="TextKeycard" type="RichTextLabel" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer2/HBoxKeycard" unique_id=419781539]
+clip_contents = false
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme = ExtResource("1_dheoj")
+text = "Keycard×"
+
+[node name="TextKeycardValue" type="RichTextLabel" parent="TopHud/MarginContainer/HBoxContainer/VBoxContainer2/HBoxKeycard" unique_id=1186022330]
+clip_contents = false
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "1"

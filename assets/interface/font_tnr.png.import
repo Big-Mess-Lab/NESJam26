@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/font_tnr.png-ea5b9252833e0ad704235814499f9824
 
 [params]
 
-character_ranges=PackedStringArray("32-126", "158", "169", "184", "246", "248")
+character_ranges=PackedStringArray("32-126", "215", "174", "169", "247", "153", "148", "151", "133")
 kerning_pairs=PackedStringArray()
 columns=16
 rows=7

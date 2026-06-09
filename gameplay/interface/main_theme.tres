@@ -17,7 +17,9 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [resource]
+HBoxContainer/constants/separation = 0
 Panel/styles/panel = SubResource("StyleBoxTexture_2n7f5")
 RichTextLabel/font_sizes/mono_font_size = 16
 RichTextLabel/font_sizes/normal_font_size = 8
 RichTextLabel/fonts/normal_font = ExtResource("1_pb0ly")
+VBoxContainer/constants/separation = 0
