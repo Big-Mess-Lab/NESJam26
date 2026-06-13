@@ -4,10 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://cjnkae7o5wywb" path="res://assets/characters/spritesheet_taxknight_tie.png" id="2_f5q53"]
 [ext_resource type="Texture2D" uid="uid://bgkt1o3u7ifja" path="res://assets/characters/spritesheet_taxknight_idle.png" id="2_hkfcp"]
 [ext_resource type="Texture2D" uid="uid://670lmaq8cq5j" path="res://assets/characters/spritesheet_taxknight_unarmed.png" id="3_63agk"]
+[ext_resource type="Texture2D" uid="uid://cqp1vcwblgttt" path="res://assets/palettes/palette_taxknight_active.png" id="3_vvwwq"]
+[ext_resource type="Texture2D" uid="uid://c8tiaxlil8p5y" path="res://assets/palettes/palette_taxknight_normal.png" id="4_js7d4"]
 [ext_resource type="Texture2D" uid="uid://baeduh1xv82em" path="res://assets/characters/spritesheet_tie_down.png" id="5_afh2d"]
+[ext_resource type="Shader" uid="uid://c25d8d25hj65y" path="res://resources/palette_swap.tres" id="5_cq8qd"]
 [ext_resource type="Texture2D" uid="uid://botbxqaqpg3ey" path="res://assets/characters/spritesheet_tie_up.png" id="5_pysup"]
+[ext_resource type="Texture2D" uid="uid://b7vdmtfx3ujg" path="res://assets/palettes/palette_tie_active.png" id="6_66ag8"]
 [ext_resource type="Texture2D" uid="uid://chl3gga3nurno" path="res://assets/characters/spritesheet_tie_left.png" id="6_mfm6y"]
+[ext_resource type="Texture2D" uid="uid://70va2u0nwt5w" path="res://assets/palettes/palette_tie_normal.png" id="7_altw3"]
 [ext_resource type="Texture2D" uid="uid://ctn0q646bew1k" path="res://assets/characters/spritesheet_tie_right.png" id="7_op6ob"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f2ry7"]
+shader = ExtResource("5_cq8qd")
+shader_parameter/original_palette = ExtResource("4_js7d4")
+shader_parameter/new_palette = ExtResource("3_vvwwq")
+shader_parameter/colors_count = 8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vdq08"]
 atlas = ExtResource("3_63agk")
@@ -367,6 +378,12 @@ animations = [{
 "name": &"unarmed_move_up",
 "speed": 1.67
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffwbu"]
+shader = ExtResource("5_cq8qd")
+shader_parameter/original_palette = ExtResource("7_altw3")
+shader_parameter/new_palette = ExtResource("6_66ag8")
+shader_parameter/colors_count = 5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gtdvi"]
 atlas = ExtResource("5_afh2d")
@@ -1032,6 +1049,8 @@ script = ExtResource("1_0xrmq")
 
 [node name="ProtagSprite" type="AnimatedSprite2D" parent="." unique_id=1596222830]
 texture_filter = 1
+material = SubResource("ShaderMaterial_f2ry7")
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_1kgp5")
 animation = &"unarmed_move_up"
 offset = Vector2(0, -8)
@@ -1039,5 +1058,7 @@ offset = Vector2(0, -8)
 [node name="SwordSprite" type="AnimatedSprite2D" parent="." unique_id=1812291134]
 visible = false
 texture_filter = 1
+material = SubResource("ShaderMaterial_ffwbu")
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_3hevr")
-animation = &"move_up_plr_up"
+animation = &"idle_down_plr_down"
