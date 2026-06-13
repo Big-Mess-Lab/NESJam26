@@ -21,6 +21,7 @@ Gameplay="*uid://b4e1xb7wpwlet"
 TurnManager="*uid://daq3prp1x5hpd"
 VFXPool="*uid://bh5t42jk7hxv6"
 HUD="*uid://bpimy05vglr74"
+Cutscene="*uid://glutx7g85bs7"
 
 [display]
 
@@ -97,6 +98,11 @@ start={
 debug_0={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194438,"key_label":0,"unicode":48,"location":0,"echo":false,"script":null)
+]
+}
+debug_1={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194439,"key_label":0,"unicode":49,"location":0,"echo":false,"script":null)
 ]
 }
 

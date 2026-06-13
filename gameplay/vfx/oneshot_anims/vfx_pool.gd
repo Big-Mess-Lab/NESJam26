@@ -1,7 +1,7 @@
 extends Node
 
 @export var pool_size: int = 6
-const VFX_SCENE = preload("res://gameplay/vfx/oneshot_anims/vfx_oneshot_anim.tscn")
+const VFX_SCENE = preload("uid://db2072p7qatcu")
 
 var _free: Array[VFXOneshotAnim] = []
 var _all: Array[VFXOneshotAnim] = []

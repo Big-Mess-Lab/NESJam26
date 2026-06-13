@@ -22,9 +22,15 @@ func _ready():
 	
 	# Init protag
 	Gameplay.protag = Gameplay.PROTAG_NODE.instantiate()
+	print(str(Gameplay.protag))
+	print(str(Gameplay.PROTAG_NODE))
+	transition_destination_room = active_room
 	Gameplay.protag.position = active_room.to_local(active_spawn.global_position)
 	Gameplay.protag.max_health = 3
 	active_room.add_child(Gameplay.protag)
+	
+	# Dirty fixes, this is to show the hud when we're jumping into the game - should be dealt with by a gamestate handler
+	HUD.top_hud.visible = true
 
 func _process(delta):
 	if !transition_active:

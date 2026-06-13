@@ -55,8 +55,5 @@ func reset_on_reenter():
 
 func reset_on_player_death():
 	for e in enemies.get_children():
-		if e is GridEntity and e.respawn_on_player_death:
-			e.respawn()
-	for e in enemies.get_children():
 		if e is GridEntity and !e.is_alive and e.respawn_on_player_death:
 			e.respawn()

@@ -10,6 +10,7 @@ var current_sword: Vector2i = Dir.DOWN
 var move_aim_mode: bool = true
 var last_input_b: bool = false
 var last_move_direction: Vector2i = Dir.DOWN
+signal continue_pressed
 
 # Funcs
 func _ready():
@@ -23,6 +24,25 @@ func _input(event: InputEvent):
 	if TurnManager.is_resolving:
 		return
 	if Gameplay.current_floor.transition_active:
+		return
+	
+	if Cutscene.active:
+		if event.is_action_pressed("up"):
+			continue_pressed.emit()
+		elif event.is_action_pressed("down"):
+			continue_pressed.emit()
+		elif event.is_action_pressed("left"):
+			continue_pressed.emit()
+		elif event.is_action_pressed("right"):
+			continue_pressed.emit()
+		elif event.is_action_pressed("a"):
+			continue_pressed.emit()
+		elif event.is_action_pressed("b"):
+			continue_pressed.emit()
+		elif event.is_action_pressed("select"):
+			continue_pressed.emit()
+		elif event.is_action_pressed("start"):
+			continue_pressed.emit()
 		return
 	
 	# Change sword/face mode
@@ -58,8 +78,9 @@ func _input(event: InputEvent):
 			_press_facing(Dir.RIGHT)
 	
 	if event.is_action_pressed("debug_0"):
-		take_damage(1)
 		TurnManager.start_turn()
+	if event.is_action_pressed("debug_1"):
+		Cutscene.start_cutscene(1, 1)
 
 func _press_facing(dir: Vector2i):
 	var is_repeat: bool = dir == last_move_direction
@@ -179,6 +200,8 @@ func _update_sprites():
 		
 		sword_sprite.position = attachment_offset * 8
 
-func take_damage(amount: int = 1, at_cell: Vector2i = current_cell):
+func take_damage(amount: int = 1, at_cell: Vector2i = Vector2i(-1, -1)):
+	if at_cell == Vector2i(-1, -1):
+		at_cell = current_cell
 	super.take_damage(amount, at_cell)
 	HUD.update_hearts()

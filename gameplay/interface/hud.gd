@@ -14,6 +14,9 @@ extends CanvasLayer
 @onready var text_floor_value: RichTextLabel = $TopHud/MarginContainer/HBoxContainer/VBoxContainer/HBoxFloor/TextFloorValue
 @onready var text_keycard_value: RichTextLabel = $TopHud/MarginContainer/HBoxContainer/VBoxContainer2/HBoxKeycard/TextKeycardValue
 
+# Textbox stuff
+@onready var text_field: RichTextLabel = $TextBox/MarginContainer/TextField
+@onready var continue_arrow: AnimatedSprite2D = $TextBox/MarginContainer/ContinueArrow
 
 # Funcs
 func update_hearts():
@@ -49,3 +52,24 @@ func update_score():
 
 func update_keycards():
 	text_keycard_value.text = str(Gameplay.keycards)
+
+func display_textbox(text: String, reveal_duration: float):
+	# Initialize nodes
+	text_field.visible_ratio = 0.0
+	text_field.text = text
+	continue_arrow.visible = false
+	
+	# Make visible, start showing text
+	text_box.visible = true
+	var tween: Tween = create_tween()
+	tween.tween_property(text_field, "visible_ratio", 1.0, reveal_duration)
+	# loop sound here
+	await tween.finished
+	
+	# Display continue arrow on end, expect input
+	continue_arrow.visible = true
+	continue_arrow.play("arrow")
+
+func hide_textbox():
+	text_box.visible = false
+	continue_arrow.visible = false

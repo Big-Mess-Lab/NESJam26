@@ -79,13 +79,15 @@ text = "Text Box demo right here! with two lines of text and sometimes even thre
 scroll_active = false
 
 [node name="ContinueArrow" type="AnimatedSprite2D" parent="TextBox/MarginContainer" unique_id=1292609423]
+visible = false
 position = Vector2(240, 40)
 sprite_frames = SubResource("SpriteFrames_ls165")
 animation = &"arrow"
-frame_progress = 0.7086343
+frame_progress = 0.28867435
 offset = Vector2(4, 4)
 
 [node name="TopHud" type="ColorRect" parent="." unique_id=863437161]
+visible = false
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.133

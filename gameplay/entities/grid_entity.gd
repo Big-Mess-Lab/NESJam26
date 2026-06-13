@@ -8,6 +8,8 @@ var room: Node
 var spawn_cell: Vector2i
 var distance_this_launch: int = 0
 var is_launching: bool = false
+@export var respawn_on_reenter: bool = false
+@export var respawn_on_player_death: bool = true
 
 # Health & damage
 @export var max_health: int = 1
@@ -116,7 +118,9 @@ func try_step(direction: Vector2i, beat_duration: float) -> StepResult:
 	_start_move_tween(beat_duration)
 	return StepResult.new(Outcome.PROCEED, [])
 
-func death(at_cell: Vector2i = current_cell):
+func death(at_cell: Vector2i = Vector2i(-1, -1)):
+	if at_cell == Vector2i(-1, -1):
+		at_cell = current_cell
 	VFXPool.play("explo", at_cell, room)
 	_unregister_self()
 	is_alive = false
@@ -189,7 +193,9 @@ func _set_attachment(active: bool, offset: Vector2i):
 		attachment_cell = current_cell + attachment_offset
 		room.register(self, attachment_cell, StepResult.Part.ATTACHMENT)
 
-func take_damage(amount: int = 1, at_cell: Vector2i = current_cell):
+func take_damage(amount: int = 1, at_cell: Vector2i = Vector2i(-1, -1)):
+	if at_cell == Vector2i(-1, -1):
+		at_cell = current_cell
 	if !is_alive:
 		return
 	health -= amount
@@ -198,7 +204,9 @@ func take_damage(amount: int = 1, at_cell: Vector2i = current_cell):
 	else:
 		_on_damaged(amount, at_cell)
 
-func _on_damaged(amount: int, at_cell: Vector2i = current_cell):
+func _on_damaged(amount: int, at_cell: Vector2i = Vector2i(-1, -1)):
+	if at_cell == Vector2i(-1, -1):
+		at_cell = current_cell
 	VFXPool.play("explo", at_cell, room)
 
 func respawn():

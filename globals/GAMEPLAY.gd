@@ -4,7 +4,7 @@ extends Node
 var game_speed: float = 0.2
 
 # Nodes
-const PROTAG_NODE = preload("uid://1ip0vr8umpa0")
+var PROTAG_NODE = load("uid://1ip0vr8umpa0")
 var protag: Node2D
 var current_floor: Node2D
 

@@ -16,7 +16,9 @@ func on_struck(strike):
 		if strike["striker"] == Gameplay.protag:
 			death(current_cell)
 
-func death(at_cell: Vector2i = current_cell):
+func death(at_cell: Vector2i = Vector2i(-1, -1)):
+	if at_cell == Vector2i(-1, -1):
+		at_cell = current_cell
 	VFXPool.play("explo", current_cell, room)
 	Gameplay.keycards += 1
 	HUD.update_keycards()

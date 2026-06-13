@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dlacpxe7xr5em"]
 
-[ext_resource type="PackedScene" uid="uid://cmftho2cy6t7r" path="res://gameplay/floors_and_rooms/floor_01/floor_01.tscn" id="2_c201j"]
+[ext_resource type="PackedScene" uid="uid://bsraip07x3tg4" path="res://gameplay/interface/title_screen.tscn" id="2_rsott"]
 
 [node name="Main" type="Node" unique_id=1785130260]
 
-[node name="FloorDebug" parent="." unique_id=540239988 instance=ExtResource("2_c201j")]
+[node name="TitleScreen" parent="." unique_id=1938444658 instance=ExtResource("2_rsott")]

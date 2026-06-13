@@ -5,8 +5,6 @@ extends GridEntity
 var cursor: int = 0
 var last_step_result: StepResult
 var action_counter: int = 0
-@export var respawn_on_reenter: bool = false
-@export var respawn_on_player_death: bool = true # if both are false, it's a one-shot enemy
 @export var points_on_death: int = 150
 
 # Authoring
@@ -88,7 +86,9 @@ func on_struck(strike):
 	else:
 		strike["striker"].take_damage(1, strike["striker"].current_cell)
 
-func death(at_cell: Vector2i = current_cell):
+func death(at_cell: Vector2i = Vector2i(-1, -1)):
+	if at_cell == Vector2i(-1, -1):
+		at_cell = current_cell
 	sprite.visible = false
 	is_launching = false
 	Gameplay.score += points_on_death
