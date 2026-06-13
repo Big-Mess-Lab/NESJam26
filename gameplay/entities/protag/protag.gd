@@ -3,6 +3,7 @@ extends GridEntity
 # Nodes
 @onready var sword_sprite: AnimatedSprite2D = $SwordSprite
 @onready var protag_sprite: AnimatedSprite2D = $ProtagSprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 # Vars
 var show_sword: bool = false
@@ -47,13 +48,13 @@ func _input(event: InputEvent):
 	
 	# Change sword/face mode
 	if event.is_action_released("b"):
-		move_aim_mode = true
+		aim_mode_deactivate()
 		if last_input_b and show_sword:
 			_toggle_show_sword()
 			_update_sprites()
 	last_input_b = false
 	if event.is_action_pressed("b"):
-		move_aim_mode = false
+		aim_mode_activate()
 		last_input_b = true
 	
 	if !move_aim_mode:
@@ -205,3 +206,20 @@ func take_damage(amount: int = 1, at_cell: Vector2i = Vector2i(-1, -1)):
 		at_cell = current_cell
 	super.take_damage(amount, at_cell)
 	HUD.update_hearts()
+	damage_blink(1.5)
+
+func damage_blink(duration: float):
+	animation_player.play("damage_blink")
+	await get_tree().create_timer(duration).timeout
+	animation_player.stop()
+	protag_sprite.visible = true
+
+func aim_mode_activate():
+	move_aim_mode = false
+	animation_player.play("aim_mode_blink")
+
+func aim_mode_deactivate():
+	move_aim_mode = true
+	animation_player.stop()
+	protag_sprite.use_parent_material = true
+	sword_sprite.use_parent_material = true

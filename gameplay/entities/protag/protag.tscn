@@ -1044,6 +1044,85 @@ animations = [{
 "speed": 1.67
 }]
 
+[sub_resource type="Animation" id="Animation_js7d4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ProtagSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProtagSprite:use_parent_material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_f2ry7"]
+resource_name = "aim_mode_blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ProtagSprite:use_parent_material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordSprite:use_parent_material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_vvwwq"]
+resource_name = "damage_blink"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ProtagSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_js7d4"]
+_data = {
+&"RESET": SubResource("Animation_js7d4"),
+&"aim_mode_blink": SubResource("Animation_f2ry7"),
+&"damage_blink": SubResource("Animation_vvwwq")
+}
+
 [node name="Protag" type="Node2D" unique_id=396828613]
 script = ExtResource("1_0xrmq")
 
@@ -1062,3 +1141,6 @@ material = SubResource("ShaderMaterial_ffwbu")
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_3hevr")
 animation = &"idle_down_plr_down"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=868747104]
+libraries/ = SubResource("AnimationLibrary_js7d4")
