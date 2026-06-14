@@ -204,6 +204,9 @@ func _try_launch():
 	is_launching = true
 	distance_this_launch = 0
 	_update_sprites()
+	if Gameplay.score >= 10:
+		Gameplay.score -= 10
+		HUD.update_score()
 	TurnManager.start_turn()
 
 func on_struck(strike):
