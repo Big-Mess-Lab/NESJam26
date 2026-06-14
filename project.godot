@@ -15,6 +15,10 @@ run/main_scene="uid://dlacpxe7xr5em"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://d2xpc3pf88ha"
+
 [autoload]
 
 Gameplay="*uid://b4e1xb7wpwlet"
@@ -22,6 +26,8 @@ TurnManager="*uid://daq3prp1x5hpd"
 VFXPool="*uid://bh5t42jk7hxv6"
 HUD="*uid://bpimy05vglr74"
 Cutscene="*uid://glutx7g85bs7"
+Music="*uid://dgcvcu4enhp1g"
+SFX="*uid://bb8jpwl1grmrq"
 
 [display]
 

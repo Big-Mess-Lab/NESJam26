@@ -1,0 +1,7 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://lysqbs5wd3pk"]
+
+[ext_resource type="AudioStream" uid="uid://dkr221t52di02" path="res://assets/sfx/elevator_running_loop/elevator_running_loop_01.wav" id="1_iohun"]
+
+[resource]
+streams_count = 1
+stream_0/stream = ExtResource("1_iohun")

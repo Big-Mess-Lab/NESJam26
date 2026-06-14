@@ -61,6 +61,9 @@ func _find_room() -> Node:
 		node = node.get_parent()
 	return null
 
+func _bumped():
+	pass
+
 func try_step(direction: Vector2i, beat_duration: float) -> StepResult:
 	var target_cell: Vector2i = current_cell + direction
 	var target_attachment_cell: Vector2i
@@ -77,11 +80,13 @@ func try_step(direction: Vector2i, beat_duration: float) -> StepResult:
 	# Check for walls, early return if there's any wall
 	for r in target_cell_contents:
 		if r.entity.is_wall == true:
+			_bumped()
 			return StepResult.new(Outcome.BLOCKED_WALL, [])
 	
 	if has_attachment:
 		for r in target_attachment_contents:
 			if r.entity.is_wall == true:
+				_bumped()
 				return StepResult.new(Outcome.BLOCKED_WALL, [])
 	
 	# Scan through for target cell contents, append entities

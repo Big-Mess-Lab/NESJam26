@@ -23,6 +23,7 @@ func _ready():
 	await get_tree().create_timer(0.5).timeout
 	
 	# Title anim
+	Music.track_theme.play()
 	animation_player.play("title_intro")
 	await get_tree().create_timer(0.01).timeout
 	texture_title.visible = true
@@ -50,7 +51,8 @@ func _input(event: InputEvent):
 
 func start_game():
 	pressed_start = true
-	# Fast toggle text
+	# Audio, fast toggle text
+	Music.play_press_start()
 	animation_player.stop()
 	animation_player.play("toggle_text_fast")
 	await get_tree().create_timer(2.0).timeout

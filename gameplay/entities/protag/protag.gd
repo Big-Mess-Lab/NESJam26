@@ -29,20 +29,28 @@ func _input(event: InputEvent):
 	
 	if Cutscene.active:
 		if event.is_action_pressed("up"):
+			SFX.text_continue.play()
 			continue_pressed.emit()
 		elif event.is_action_pressed("down"):
+			SFX.text_continue.play()
 			continue_pressed.emit()
 		elif event.is_action_pressed("left"):
+			SFX.text_continue.play()
 			continue_pressed.emit()
 		elif event.is_action_pressed("right"):
+			SFX.text_continue.play()
 			continue_pressed.emit()
 		elif event.is_action_pressed("a"):
+			SFX.text_continue.play()
 			continue_pressed.emit()
 		elif event.is_action_pressed("b"):
+			SFX.text_continue.play()
 			continue_pressed.emit()
 		elif event.is_action_pressed("select"):
+			SFX.text_continue.play()
 			continue_pressed.emit()
 		elif event.is_action_pressed("start"):
+			SFX.text_continue.play()
 			continue_pressed.emit()
 		return
 	
@@ -95,6 +103,7 @@ func _update_facing(dir: Vector2i):
 	_update_sprites()
 
 func _update_sword(dir: Vector2i):
+	var was_already_showing: bool = show_sword == true
 	if show_sword and dir == current_sword:
 		_toggle_show_sword()
 		_update_sprites()
@@ -121,6 +130,8 @@ func _update_sword(dir: Vector2i):
 	current_sword = dir
 	_update_sprites()
 	last_input_b = false
+	if was_already_showing:
+		SFX.sword_turn.play()
 	
 	# Jab action, if enemy present
 	if jab_target != null:
@@ -144,7 +155,10 @@ func _toggle_show_sword():
 	sword_sprite.visible = show_sword
 	
 	if !show_sword:
+		SFX.sword_unsheath.play()
 		_set_attachment(false, Vector2i.ZERO)
+	else:
+		SFX.sword_sheath.play()
 
 func can_launch() -> bool:
 	# Protag Body check
@@ -204,6 +218,7 @@ func _update_sprites():
 func take_damage(amount: int = 1, at_cell: Vector2i = Vector2i(-1, -1)):
 	if at_cell == Vector2i(-1, -1):
 		at_cell = current_cell
+	SFX.player_hurt.play()
 	super.take_damage(amount, at_cell)
 	HUD.update_hearts()
 	damage_blink(1.5)
@@ -223,3 +238,13 @@ func aim_mode_deactivate():
 	animation_player.stop()
 	protag_sprite.use_parent_material = true
 	sword_sprite.use_parent_material = true
+
+func death(at_cell: Vector2i = Vector2i(-1, -1)):
+	if at_cell == Vector2i(-1, -1):
+		at_cell = current_cell
+	Music.stop_all_music()
+	Music.jingle_death.play()
+	super.death(at_cell)
+
+func _bumped():
+	SFX.player_bump.play()

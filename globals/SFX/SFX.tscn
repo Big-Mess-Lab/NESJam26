@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://bb8jpwl1grmrq"]
+
+[ext_resource type="Script" uid="uid://drw1jlmuw8q5v" path="res://globals/SFX/SFX.gd" id="1_atods"]
+[ext_resource type="AudioStream" uid="uid://yierrusg3ipq" path="res://assets/sfx/elevator_ding/elevator_ding.tres" id="2_rkxpv"]
+[ext_resource type="AudioStream" uid="uid://deuw2cy4wytt8" path="res://assets/sfx/elevator_door/elevator_door.tres" id="3_4653c"]
+[ext_resource type="AudioStream" uid="uid://bth0liqv811wb" path="res://assets/sfx/elevator_error/elevator_error.tres" id="4_nw28r"]
+[ext_resource type="AudioStream" uid="uid://lysqbs5wd3pk" path="res://assets/sfx/elevator_running_loop/elevator_running_loop.tres" id="5_hgckr"]
+[ext_resource type="AudioStream" uid="uid://dn7o0qjls6qio" path="res://assets/sfx/enemy_death/enemy_death.tres" id="6_ixcxp"]
+[ext_resource type="AudioStream" uid="uid://dciaukfpivqhj" path="res://assets/sfx/pickup/pickup.tres" id="7_bvxbu"]
+[ext_resource type="AudioStream" uid="uid://m8cwx6gins01" path="res://assets/sfx/player_bump/player_bump.tres" id="8_q4enr"]
+[ext_resource type="AudioStream" uid="uid://ciedxigs6jchm" path="res://assets/sfx/player_hurt/player_hurt.tres" id="9_4dpxh"]
+[ext_resource type="AudioStream" uid="uid://y1r10mu2o88l" path="res://assets/sfx/sword_hurt/sword_hurt.tres" id="10_vpilo"]
+[ext_resource type="AudioStream" uid="uid://c7s1s0syojl2s" path="res://assets/sfx/sword_sheath/sword_sheath.tres" id="11_lyuym"]
+[ext_resource type="AudioStream" uid="uid://cnt4x3sqymfcd" path="res://assets/sfx/sword_turn/sword_turn.tres" id="12_mlobg"]
+[ext_resource type="AudioStream" uid="uid://dhr0dd13p3p7p" path="res://assets/sfx/sword_unsheath/sword_unsheath.tres" id="13_6oenb"]
+[ext_resource type="AudioStream" uid="uid://coqmd0knqfrge" path="res://assets/sfx/text_blip_generic/text_blip_generic.tres" id="14_p3vo6"]
+[ext_resource type="AudioStream" uid="uid://dlncsuy6n724a" path="res://assets/sfx/text_blip_goblin/text_blip_goblin.tres" id="15_jvkac"]
+[ext_resource type="AudioStream" uid="uid://r8581em4h6q7" path="res://assets/sfx/text_blip_knight/text_blip_knight.tres" id="16_yakcu"]
+[ext_resource type="AudioStream" uid="uid://b8p3rb4shie6h" path="res://assets/sfx/text_blip_wizard/text_blip_wizard.tres" id="17_rgrqj"]
+[ext_resource type="AudioStream" uid="uid://dge5fbg1mbtgx" path="res://assets/sfx/text_continue/text_continue.tres" id="18_vwc88"]
+[ext_resource type="AudioStream" uid="uid://dp8c1y5ffd5qa" path="res://assets/sfx/turn_launch/turn_launch.tres" id="19_fakl4"]
+[ext_resource type="AudioStream" uid="uid://e37icuaq5afh" path="res://assets/sfx/turn_without_player/turn_without_player.tres" id="20_l8ss7"]
+[ext_resource type="AudioStream" uid="uid://bm23p5u75jqa1" path="res://assets/sfx/turn_with_player/turn_with_player.tres" id="21_gjdqv"]
+
+[node name="SFX" type="Node" unique_id=128478277]
+script = ExtResource("1_atods")
+
+[node name="ElevatorDing" type="AudioStreamPlayer" parent="." unique_id=1288337355]
+stream = ExtResource("2_rkxpv")
+bus = &"SFX"
+
+[node name="ElevatorDoor" type="AudioStreamPlayer" parent="." unique_id=1387844422]
+stream = ExtResource("3_4653c")
+bus = &"SFX"
+
+[node name="ElevatorError" type="AudioStreamPlayer" parent="." unique_id=356843328]
+stream = ExtResource("4_nw28r")
+bus = &"SFX"
+
+[node name="ElevatorRunningLoop" type="AudioStreamPlayer" parent="." unique_id=1817897939]
+stream = ExtResource("5_hgckr")
+bus = &"SFX"
+
+[node name="EnemyDeath" type="AudioStreamPlayer" parent="." unique_id=86021021]
+stream = ExtResource("6_ixcxp")
+bus = &"SFX"
+
+[node name="Pickup" type="AudioStreamPlayer" parent="." unique_id=1849401106]
+stream = ExtResource("7_bvxbu")
+bus = &"SFX"
+
+[node name="PlayerBump" type="AudioStreamPlayer" parent="." unique_id=912000759]
+stream = ExtResource("8_q4enr")
+bus = &"SFX"
+
+[node name="PlayerHurt" type="AudioStreamPlayer" parent="." unique_id=1691569281]
+stream = ExtResource("9_4dpxh")
+bus = &"SFX"
+
+[node name="SwordHurt" type="AudioStreamPlayer" parent="." unique_id=1198567764]
+stream = ExtResource("10_vpilo")
+bus = &"SFX"
+
+[node name="SwordSheath" type="AudioStreamPlayer" parent="." unique_id=2011658089]
+stream = ExtResource("11_lyuym")
+bus = &"SFX"
+
+[node name="SwordTurn" type="AudioStreamPlayer" parent="." unique_id=1437425887]
+stream = ExtResource("12_mlobg")
+bus = &"SFX"
+
+[node name="SwordUnsheath" type="AudioStreamPlayer" parent="." unique_id=1304485147]
+stream = ExtResource("13_6oenb")
+bus = &"SFX"
+
+[node name="TextBlipGeneric" type="AudioStreamPlayer" parent="." unique_id=1322891117]
+stream = ExtResource("14_p3vo6")
+bus = &"SFX"
+
+[node name="TextBlipGoblin" type="AudioStreamPlayer" parent="." unique_id=1839735286]
+stream = ExtResource("15_jvkac")
+bus = &"SFX"
+
+[node name="TextBlipKnight" type="AudioStreamPlayer" parent="." unique_id=2042691165]
+stream = ExtResource("16_yakcu")
+bus = &"SFX"
+
+[node name="TextBlipWizard" type="AudioStreamPlayer" parent="." unique_id=1573522638]
+stream = ExtResource("17_rgrqj")
+bus = &"SFX"
+
+[node name="TextContinue" type="AudioStreamPlayer" parent="." unique_id=168446889]
+stream = ExtResource("18_vwc88")
+bus = &"SFX"
+
+[node name="TurnLaunch" type="AudioStreamPlayer" parent="." unique_id=169622642]
+stream = ExtResource("19_fakl4")
+bus = &"SFX"
+
+[node name="TurnWithoutPlayer" type="AudioStreamPlayer" parent="." unique_id=1470514924]
+stream = ExtResource("20_l8ss7")
+volume_db = -14.0
+bus = &"SFX"
+
+[node name="TurnWithPlayer" type="AudioStreamPlayer" parent="." unique_id=775092593]
+stream = ExtResource("21_gjdqv")
+volume_db = -14.0
+bus = &"SFX"

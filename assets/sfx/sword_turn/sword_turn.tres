@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://cnt4x3sqymfcd"]
+
+[ext_resource type="AudioStream" uid="uid://t8uhn4givmrq" path="res://assets/sfx/sword_turn/sword_turn_01.wav" id="1_ybio2"]
+[ext_resource type="AudioStream" uid="uid://chohwvc314syw" path="res://assets/sfx/sword_turn/sword_turn_02.wav" id="2_kfb56"]
+[ext_resource type="AudioStream" uid="uid://bfuxe1td47k35" path="res://assets/sfx/sword_turn/sword_turn_03.wav" id="3_nw2mu"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_ybio2")
+stream_1/stream = ExtResource("2_kfb56")
+stream_2/stream = ExtResource("3_nw2mu")

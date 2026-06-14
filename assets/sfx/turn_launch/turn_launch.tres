@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://dp8c1y5ffd5qa"]
+
+[ext_resource type="AudioStream" uid="uid://dl8sur4erqdfp" path="res://assets/sfx/turn_launch/turn_launch_01.wav" id="1_iggke"]
+[ext_resource type="AudioStream" uid="uid://dvp3a4rilo3yi" path="res://assets/sfx/turn_launch/turn_launch_02.wav" id="2_de22j"]
+[ext_resource type="AudioStream" uid="uid://bt1nve5gap7p6" path="res://assets/sfx/turn_launch/turn_launch_03.wav" id="3_s8wrh"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_iggke")
+stream_1/stream = ExtResource("2_de22j")
+stream_2/stream = ExtResource("3_s8wrh")

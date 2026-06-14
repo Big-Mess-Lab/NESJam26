@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://b8p3rb4shie6h"]
+
+[ext_resource type="AudioStream" uid="uid://rv0trgdnaom4" path="res://assets/sfx/text_blip_wizard/text_blip_wizard_01.wav" id="1_kcq00"]
+[ext_resource type="AudioStream" uid="uid://kghpi06tfw4d" path="res://assets/sfx/text_blip_wizard/text_blip_wizard_02.wav" id="2_1vkvj"]
+[ext_resource type="AudioStream" uid="uid://va16vslytmq0" path="res://assets/sfx/text_blip_wizard/text_blip_wizard_03.wav" id="3_h2bxq"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_kcq00")
+stream_1/stream = ExtResource("2_1vkvj")
+stream_2/stream = ExtResource("3_h2bxq")

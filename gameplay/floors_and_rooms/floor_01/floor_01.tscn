@@ -8,10 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://dkwgxhi25t4qs" path="res://gameplay/floors_and_rooms/floor_01/flr01_room_05.tscn" id="6_t7bm1"]
 [ext_resource type="PackedScene" uid="uid://00hbjecr6vbd" path="res://gameplay/floors_and_rooms/floor_01/flr01_elevator_room.tscn" id="7_o576e"]
 
-[node name="Floor01" type="Node2D" unique_id=540239988 node_paths=PackedStringArray("active_spawn", "active_room")]
+[node name="Floor01" type="Node2D" unique_id=540239988 node_paths=PackedStringArray("active_spawn", "active_room", "elevator_room")]
 script = ExtResource("1_tiqcx")
 active_spawn = NodePath("SpawnPoint")
 active_room = NodePath("RoomElevator01")
+elevator_room = NodePath("RoomElevator01")
 
 [node name="Room01" parent="." unique_id=1962429657 instance=ExtResource("2_veu2m")]
 position = Vector2(-256, 256)

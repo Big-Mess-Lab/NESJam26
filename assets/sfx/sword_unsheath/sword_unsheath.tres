@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://dhr0dd13p3p7p"]
+
+[ext_resource type="AudioStream" uid="uid://dmcxm6hh8a0ag" path="res://assets/sfx/sword_unsheath/sword_unsheath_01.wav" id="1_d3qqi"]
+[ext_resource type="AudioStream" uid="uid://dtpiml1none5a" path="res://assets/sfx/sword_unsheath/sword_unsheath_02.wav" id="2_1xvmq"]
+[ext_resource type="AudioStream" uid="uid://uic5tyqf37v0" path="res://assets/sfx/sword_unsheath/sword_unsheath_03.wav" id="3_n4lq4"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_d3qqi")
+stream_1/stream = ExtResource("2_1xvmq")
+stream_2/stream = ExtResource("3_n4lq4")

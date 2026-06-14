@@ -1,0 +1,7 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://dge5fbg1mbtgx"]
+
+[ext_resource type="AudioStream" uid="uid://1d8fc0cxhj61" path="res://assets/sfx/text_continue/text_continue_01.wav" id="1_7erhl"]
+
+[resource]
+streams_count = 1
+stream_0/stream = ExtResource("1_7erhl")

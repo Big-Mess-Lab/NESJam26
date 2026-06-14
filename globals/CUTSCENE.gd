@@ -62,19 +62,28 @@ func _input(event: InputEvent):
 		return
 	
 	if event.is_action_pressed("up"):
+		SFX.text_continue.play()
 		continue_pressed.emit()
 	elif event.is_action_pressed("down"):
+		SFX.text_continue.play()
 		continue_pressed.emit()
 	elif event.is_action_pressed("left"):
+		SFX.text_continue.play()
 		continue_pressed.emit()
 	elif event.is_action_pressed("right"):
+		SFX.text_continue.play()
 		continue_pressed.emit()
 	elif event.is_action_pressed("a"):
+		SFX.text_continue.play()
 		continue_pressed.emit()
+		SFX.text_continue.play()
 	elif event.is_action_pressed("b"):
 		continue_pressed.emit()
+		SFX.text_continue.play()
 	elif event.is_action_pressed("select"):
+		SFX.text_continue.play()
 		continue_pressed.emit()
 	elif event.is_action_pressed("start"):
+		SFX.text_continue.play()
 		continue_pressed.emit()
 	return

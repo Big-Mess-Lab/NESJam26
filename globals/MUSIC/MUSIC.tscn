@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dgcvcu4enhp1g"]
+
+[ext_resource type="Script" uid="uid://dkyilccr8lrdw" path="res://globals/MUSIC/MUSIC.gd" id="1_twywq"]
+[ext_resource type="AudioStream" uid="uid://cy1wb0fr0mg7x" path="res://assets/music/jingle_death.wav" id="2_jcbus"]
+[ext_resource type="AudioStream" uid="uid://dx3jy1drct6bt" path="res://assets/music/jingle_key_room.wav" id="3_penky"]
+[ext_resource type="AudioStream" uid="uid://cxrm81fy8anbf" path="res://assets/music/jingle_press_start.wav" id="4_penky"]
+[ext_resource type="AudioStream" uid="uid://qnr404i37bx7" path="res://assets/music/track_dungeon.wav" id="5_h3dik"]
+[ext_resource type="AudioStream" uid="uid://b2xx813aqnb7m" path="res://assets/music/track_elevator.wav" id="6_qwuoj"]
+[ext_resource type="AudioStream" uid="uid://c8gifkttnl1dk" path="res://assets/music/track_theme.wav" id="7_78r1a"]
+
+[node name="Music" type="Node" unique_id=661924996]
+script = ExtResource("1_twywq")
+
+[node name="JingleDeath" type="AudioStreamPlayer" parent="." unique_id=1216275778]
+stream = ExtResource("2_jcbus")
+bus = &"Music"
+
+[node name="JingleKeyRoom" type="AudioStreamPlayer" parent="." unique_id=694832881]
+stream = ExtResource("3_penky")
+bus = &"Music"
+
+[node name="JinglePressStart" type="AudioStreamPlayer" parent="." unique_id=427443279]
+stream = ExtResource("4_penky")
+bus = &"Music"
+
+[node name="TrackDungeon" type="AudioStreamPlayer" parent="." unique_id=683860694]
+stream = ExtResource("5_h3dik")
+bus = &"Music"
+
+[node name="TrackElevator" type="AudioStreamPlayer" parent="." unique_id=1942977240]
+stream = ExtResource("6_qwuoj")
+bus = &"Music"
+
+[node name="TrackTheme" type="AudioStreamPlayer" parent="." unique_id=46490923]
+stream = ExtResource("7_78r1a")
+bus = &"Music"

@@ -8,6 +8,8 @@ func start_turn():
 		return
 	
 	is_resolving = true
+	
+	SFX.turn_launch.play()
 	_begin_enemies()
 	await _run_turn()
 	is_resolving = false
@@ -64,7 +66,14 @@ func _run_turn():
 			var target = strike["entity"]
 			target.on_struck(strike)
 		
-		# 3: Wait for all anims in this turn
+		
+		# 3: Play sfx
+		if Gameplay.protag.is_launching:
+			SFX.turn_with_player.play()
+		else:
+			SFX.turn_without_player.play()
+		
+		# 4: Wait for all anims in this turn
 		await _await_beat(movers, beat_duration)
 
 func _await_beat(movers: Array, beat_duration: float):

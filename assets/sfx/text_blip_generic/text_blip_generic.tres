@@ -1,0 +1,7 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://coqmd0knqfrge"]
+
+[ext_resource type="AudioStream" uid="uid://c13qpenqiw2eb" path="res://assets/sfx/text_blip_generic/text_blip_generic_01.wav" id="1_3cbk6"]
+
+[resource]
+streams_count = 1
+stream_0/stream = ExtResource("1_3cbk6")

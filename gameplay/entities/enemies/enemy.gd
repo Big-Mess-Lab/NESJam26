@@ -83,12 +83,14 @@ func _pick_new_direction():
 func on_struck(strike):
 	if strike["striker_part"] == StepResult.Part.ATTACHMENT:
 		take_damage(1, strike["target_cell"])
+		SFX.sword_hurt.play()
 	else:
 		strike["striker"].take_damage(1, strike["striker"].current_cell)
 
 func death(at_cell: Vector2i = Vector2i(-1, -1)):
 	if at_cell == Vector2i(-1, -1):
 		at_cell = current_cell
+	SFX.enemy_death.play()
 	sprite.visible = false
 	is_launching = false
 	Gameplay.score += points_on_death

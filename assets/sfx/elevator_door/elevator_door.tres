@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://deuw2cy4wytt8"]
+
+[ext_resource type="AudioStream" uid="uid://caxwu6yo7bxs" path="res://assets/sfx/elevator_door/elevator_door_01.wav" id="1_sx8da"]
+[ext_resource type="AudioStream" uid="uid://l0edgukntaqw" path="res://assets/sfx/elevator_door/elevator_door_02.wav" id="2_k8ydr"]
+[ext_resource type="AudioStream" uid="uid://covbeg3y4nh0w" path="res://assets/sfx/elevator_door/elevator_door_03.wav" id="3_yai2o"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_sx8da")
+stream_1/stream = ExtResource("2_k8ydr")
+stream_2/stream = ExtResource("3_yai2o")

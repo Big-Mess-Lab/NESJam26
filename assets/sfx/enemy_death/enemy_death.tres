@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://dn7o0qjls6qio"]
+
+[ext_resource type="AudioStream" uid="uid://bexybbh2taj2l" path="res://assets/sfx/enemy_death/enemy_death_01.wav" id="1_jxbkg"]
+[ext_resource type="AudioStream" uid="uid://cmcp25k60pq1y" path="res://assets/sfx/enemy_death/enemy_death_02.wav" id="2_6dqli"]
+[ext_resource type="AudioStream" uid="uid://cd1n4o2ttk7pc" path="res://assets/sfx/enemy_death/enemy_death_03.wav" id="3_ytgie"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_jxbkg")
+stream_1/stream = ExtResource("2_6dqli")
+stream_2/stream = ExtResource("3_ytgie")

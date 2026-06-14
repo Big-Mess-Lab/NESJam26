@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://dlncsuy6n724a"]
+
+[ext_resource type="AudioStream" uid="uid://boe2u0o6j1yu3" path="res://assets/sfx/text_blip_goblin/text_blip_goblin_01.wav" id="1_d1bw2"]
+[ext_resource type="AudioStream" uid="uid://0veoxmbk8p0t" path="res://assets/sfx/text_blip_goblin/text_blip_goblin_02.wav" id="2_hxuxv"]
+[ext_resource type="AudioStream" uid="uid://dxo15pcoknlrn" path="res://assets/sfx/text_blip_goblin/text_blip_goblin_03.wav" id="3_miny2"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_d1bw2")
+stream_1/stream = ExtResource("2_hxuxv")
+stream_2/stream = ExtResource("3_miny2")

@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://c7s1s0syojl2s"]
+
+[ext_resource type="AudioStream" uid="uid://3c2rvkmpnu8j" path="res://assets/sfx/sword_sheath/sword_sheath_01.wav" id="1_iflh2"]
+[ext_resource type="AudioStream" uid="uid://b6rww3fee78sw" path="res://assets/sfx/sword_sheath/sword_sheath_02.wav" id="2_boe43"]
+[ext_resource type="AudioStream" uid="uid://bmx4ftu53h8r4" path="res://assets/sfx/sword_sheath/sword_sheath_03.wav" id="3_5obpt"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_iflh2")
+stream_1/stream = ExtResource("2_boe43")
+stream_2/stream = ExtResource("3_5obpt")
