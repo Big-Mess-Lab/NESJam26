@@ -23,4 +23,5 @@ func death(at_cell: Vector2i = Vector2i(-1, -1)):
 	VFXPool.play("explo", current_cell, room)
 	Gameplay.keycards += 1
 	HUD.update_keycards()
+	_unregister_self()
 	queue_free()

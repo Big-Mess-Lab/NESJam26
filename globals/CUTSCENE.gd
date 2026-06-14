@@ -4,7 +4,7 @@ extends Node
 var active: bool = false
 var current_line: int = 0
 signal continue_pressed
-const FLOOR_01 = preload("uid://cmftho2cy6t7r")
+@onready var FLOOR_01 = load("uid://040b4rs5m30c")
 
 # Data: Cutscene 1
 var lines_01: Array[String] = [ # Lines of cutscene 01

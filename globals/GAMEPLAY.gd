@@ -5,12 +5,16 @@ var game_speed: float = 0.2
 
 # Nodes
 var PROTAG_NODE = load("uid://1ip0vr8umpa0")
+const FLOOR_01 = preload("uid://040b4rs5m30c")
+const FLOOR_02 = preload("uid://cmftho2cy6t7r")
 var protag: Node2D
 var current_floor: Node2D
 
 # Vars
 var score: int = 0
 var keycards: int = 0
+var is_dying: bool = false
+var using_elevator: bool = false
 
 # Functions
 func get_tile_coordinate(px_coordinate: Vector2) -> Vector2i:
@@ -45,3 +49,33 @@ func local_to_cell(local: Vector2) -> Vector2i:
 
 func cell_to_local(cell: Vector2i) -> Vector2:
 	return Vector2(cell.x * 16 + 8, cell.y * 16 + 8)
+
+func move_to_floor(floor_num: int):
+	if !using_elevator:
+		return
+	
+	# Fade to black
+	HUD.transition_to_black()
+	await get_tree().create_timer(2.0).timeout
+	# Select new floor
+	var new_floor_scene
+	
+	match floor_num:
+		1: new_floor_scene = FLOOR_01
+		2: new_floor_scene = FLOOR_02
+	
+	# Get rid of old floor
+	if is_instance_valid(current_floor):
+		current_floor.queue_free()
+	
+	# Instance new floor
+	var new_floor = new_floor_scene.instantiate()
+	get_tree().current_scene.add_child(new_floor)
+	current_floor = new_floor
+	
+	# Fade from black
+	protag.protag_sprite.visible = true
+	protag.sword_sprite.visible = protag.show_sword
+	HUD.transition_from_black()
+	await get_tree().create_timer(1.2).timeout
+	using_elevator = false

@@ -7,7 +7,8 @@ class_name Room
 @onready var main: Node = get_parent().get_parent()
 @onready var objects: Node2D = $Objects
 @onready var enemies: Node2D = $Enemies
-
+@export var spawn_cell: Node2D
+@export var spawn_dir: Dir.Facing
 # Vars
 var occupants: Dictionary = {}
 var is_active: bool = false

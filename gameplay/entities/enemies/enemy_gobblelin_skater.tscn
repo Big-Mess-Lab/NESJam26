@@ -1,6 +1,20 @@
 [gd_scene format=3 uid="uid://cdew1lvc3r153"]
 
 [ext_resource type="Texture2D" uid="uid://cqkuec74wdhfj" path="res://assets/characters/spritesheet_gobblelin_skater.png" id="1_2jk1c"]
+[ext_resource type="Script" uid="uid://dy7hxapqrr5d0" path="res://gameplay/entities/enemies/enemy.gd" id="1_crmcp"]
+[ext_resource type="Script" uid="uid://bwo3qrfyitm4w" path="res://gameplay/entities/actions/enemy_action.gd" id="2_ba730"]
+[ext_resource type="Script" uid="uid://c3sm0wqf7s80v" path="res://gameplay/entities/actions/action_move_steps.gd" id="3_2iotf"]
+[ext_resource type="Script" uid="uid://beepmeck7k3cb" path="res://gameplay/entities/actions/action_turn_relative.gd" id="4_4tim8"]
+
+[sub_resource type="Resource" id="Resource_t2i07"]
+script = ExtResource("3_2iotf")
+steps = 2
+metadata/_custom_type_script = "uid://c3sm0wqf7s80v"
+
+[sub_resource type="Resource" id="Resource_r83px"]
+script = ExtResource("4_4tim8")
+rotation = 2
+metadata/_custom_type_script = "uid://beepmeck7k3cb"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2jk1c"]
 atlas = ExtResource("1_2jk1c")
@@ -262,8 +276,12 @@ animations = [{
 }]
 
 [node name="EnemyGobblelinSkater" type="Node2D" unique_id=532991836]
+script = ExtResource("1_crmcp")
+actions = Array[ExtResource("2_ba730")]([SubResource("Resource_t2i07"), SubResource("Resource_r83px")])
+points_on_death = 275
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1856279220]
 sprite_frames = SubResource("SpriteFrames_p3u1o")
-animation = &"hit_down"
+animation = &"move_up"
+frame_progress = 0.6195724
 offset = Vector2(0, -8)

@@ -62,7 +62,7 @@ func _find_room() -> Node:
 	return null
 
 func _bumped():
-	pass
+	_update_sprites()
 
 func try_step(direction: Vector2i, beat_duration: float) -> StepResult:
 	var target_cell: Vector2i = current_cell + direction
@@ -130,6 +130,9 @@ func death(at_cell: Vector2i = Vector2i(-1, -1)):
 	_unregister_self()
 	is_alive = false
 
+func _update_sprites(dir: Vector2i = facing):
+	pass
+
 func blocks(other: GridEntity) -> bool: # Am I blocked by other?
 	if other.is_wall:
 		return true
@@ -155,11 +158,16 @@ static func layers_collide(a: Layer, b: Layer) -> bool:
 	return a == Layer.ENTITY and b == Layer.ENTITY
 
 func advance_step(beat_duration: float) -> StepResult:
+	var was_launching: bool = is_launching
 	var result: StepResult = try_step(facing, beat_duration)
 	if result.outcome != Outcome.PROCEED:
 		is_launching = false
 		if self == Gameplay.protag:
-			Gameplay.protag._update_sprites()
+			_update_sprites()
+			if Input.is_action_pressed("b"):
+				Gameplay.protag.aim_mode_activate()
+			else:
+				Gameplay.protag.aim_mode_deactivate()
 	
 	return result
 

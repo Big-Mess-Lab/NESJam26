@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://bc2s7mxatk2r7"]
+
+[ext_resource type="Script" uid="uid://deyqtsg3g718q" path="res://gameplay/elevator_door/elevator_door.gd" id="1_fsvff"]
+[ext_resource type="Texture2D" uid="uid://cx8d4k2ma67w0" path="res://assets/tilesets/tileset_world.png" id="1_h2rrn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u3b1"]
+atlas = ExtResource("1_h2rrn")
+region = Rect2(112, 320, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6n57h"]
+atlas = ExtResource("1_h2rrn")
+region = Rect2(96, 320, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb45r"]
+atlas = ExtResource("1_h2rrn")
+region = Rect2(80, 320, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fsvff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u3b1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6n57h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb45r")
+}],
+"loop": false,
+"name": &"close",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb45r")
+}],
+"loop": false,
+"name": &"closed",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb45r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6n57h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u3b1")
+}],
+"loop": false,
+"name": &"open",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u3b1")
+}],
+"loop": false,
+"name": &"opened",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqmwk"]
+atlas = ExtResource("1_h2rrn")
+region = Rect2(161, 320, 47, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5l6k"]
+atlas = ExtResource("1_h2rrn")
+region = Rect2(161, 304, 47, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsvff"]
+atlas = ExtResource("1_h2rrn")
+region = Rect2(161, 288, 47, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jb45r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqmwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5l6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsvff")
+}],
+"loop": false,
+"name": &"close",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsvff")
+}],
+"loop": false,
+"name": &"closed",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsvff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5l6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqmwk")
+}],
+"loop": false,
+"name": &"open",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqmwk")
+}],
+"loop": false,
+"name": &"opened",
+"speed": 3.0
+}]
+
+[node name="ElevatorDoor" type="Node2D" unique_id=432634852]
+script = ExtResource("1_fsvff")
+
+[node name="ShadowAnim" type="AnimatedSprite2D" parent="." unique_id=321419095]
+sprite_frames = SubResource("SpriteFrames_fsvff")
+animation = &"closed"
+autoplay = "closed"
+
+[node name="DoorAnim" type="AnimatedSprite2D" parent="." unique_id=584303088]
+sprite_frames = SubResource("SpriteFrames_jb45r")
+animation = &"closed"
+autoplay = "closed"

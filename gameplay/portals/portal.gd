@@ -30,7 +30,8 @@ func _process(_delta):
 		_move_player()
 
 func interact(striker):
-	_teleport()
+	if striker == Gameplay.protag:
+		_teleport()
 
 func _teleport():
 	parent_floor.transition_to_room(destination_room)

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cmftho2cy6t7r"]
+
+[ext_resource type="Script" uid="uid://dwylfa32tvwmp" path="res://gameplay/floors_and_rooms/floor.gd" id="1_tiqcx"]
+[ext_resource type="PackedScene" uid="uid://m3qwdbkwitwj" path="res://gameplay/floors_and_rooms/floor_02/flr02_room_01.tscn" id="2_veu2m"]
+[ext_resource type="PackedScene" uid="uid://bxlbm8oc8b4do" path="res://gameplay/floors_and_rooms/floor_02/flr02_room_02.tscn" id="3_ljimd"]
+[ext_resource type="PackedScene" uid="uid://njmywvu28cfs" path="res://gameplay/floors_and_rooms/floor_02/flr02_room_03.tscn" id="4_rkodh"]
+[ext_resource type="PackedScene" uid="uid://cfph0vyfudi3x" path="res://gameplay/floors_and_rooms/floor_02/flr02_room_04.tscn" id="5_xn7kn"]
+[ext_resource type="PackedScene" uid="uid://00hbjecr6vbd" path="res://gameplay/floors_and_rooms/floor_02/flr02_elevator_room.tscn" id="7_o576e"]
+
+[node name="Floor02" type="Node2D" unique_id=540239988 node_paths=PackedStringArray("active_spawn", "active_room", "elevator_room", "key_room")]
+script = ExtResource("1_tiqcx")
+active_spawn = NodePath("SpawnPoint")
+active_room = NodePath("RoomElevator02")
+elevator_room = NodePath("RoomElevator02")
+key_room = NodePath("Room02")
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1377631717]
+position = Vector2(136, 72)
+gizmo_extents = 8.0
+
+[node name="RoomElevator02" parent="." unique_id=20514657 instance=ExtResource("7_o576e")]
+
+[node name="Portal" parent="RoomElevator02/Objects" parent_id_path=PackedInt32Array(20514657, 374739152) index="0" unique_id=2007719183 node_paths=PackedStringArray("destination")]
+destination = NodePath("../../../Room01/Objects/Destination")
+
+[node name="Portal2" parent="RoomElevator02/Objects" parent_id_path=PackedInt32Array(20514657, 374739152) index="2" unique_id=1086932447 node_paths=PackedStringArray("destination")]
+destination = NodePath("../../../Room03/Objects/Destination")
+
+[node name="Portal3" parent="RoomElevator02/Objects" parent_id_path=PackedInt32Array(20514657, 374739152) index="4" unique_id=173206018 node_paths=PackedStringArray("destination")]
+destination = NodePath("../../../Room02/Objects/Destination2")
+
+[node name="Portal4" parent="RoomElevator02/Objects" parent_id_path=PackedInt32Array(20514657, 374739152) index="6" unique_id=1521203416 node_paths=PackedStringArray("destination")]
+destination = NodePath("../../../Room04/Objects/Destination")
+
+[node name="Room01" parent="." unique_id=1962429657 instance=ExtResource("2_veu2m")]
+position = Vector2(-256, -96)
+
+[node name="Portal" parent="Room01/Objects" parent_id_path=PackedInt32Array(1962429657, 906171461) index="0" unique_id=2007719183 node_paths=PackedStringArray("destination")]
+destination = NodePath("../../../RoomElevator02/Objects/Destination")
+
+[node name="Portal2" parent="Room01/Objects" parent_id_path=PackedInt32Array(1962429657, 906171461) index="2" unique_id=553297407 node_paths=PackedStringArray("destination")]
+destination = NodePath("../../../Room02/Objects/Destination")
+
+[node name="Room02" parent="." unique_id=401765550 instance=ExtResource("3_ljimd")]
+position = Vector2(-256, 160)
+
+[node name="Portal" parent="Room02/Objects" parent_id_path=PackedInt32Array(401765550, 365833505) index="0" unique_id=2007719183 node_paths=PackedStringArray("destination")]
+destination = NodePath("../../../Room01/Objects/Destination2")
+
+[node name="Portal2" parent="Room02/Objects" parent_id_path=PackedInt32Array(401765550, 365833505) index="2" unique_id=1097864399 node_paths=PackedStringArray("destination")]
+destination = NodePath("../../../RoomElevator02/Objects/Destination3")
+
+[node name="ObjectKeycard" parent="Room02/Objects" parent_id_path=PackedInt32Array(401765550, 365833505) index="4" unique_id=1628013177]
+max_health = 1
+layer = 1
+has_attachment = false
+
+[node name="Room03" parent="." unique_id=2075268539 instance=ExtResource("4_rkodh")]
+position = Vector2(256, -96)
+
+[node name="Portal" parent="Room03/Objects" parent_id_path=PackedInt32Array(2075268539, 365833505) index="0" unique_id=2007719183 node_paths=PackedStringArray("destination")]
+destination = NodePath("../../../RoomElevator02/Objects/Destination2")
+
+[node name="Room04" parent="." unique_id=1411233247 instance=ExtResource("5_xn7kn")]
+position = Vector2(256, 160)
+
+[node name="Portal" parent="Room04/Objects" parent_id_path=PackedInt32Array(1411233247, 365833505) index="0" unique_id=2007719183 node_paths=PackedStringArray("destination")]
+destination = NodePath("../../../RoomElevator02/Objects/Destination4")
+
+[editable path="RoomElevator02"]
+[editable path="Room01"]
+[editable path="Room02"]
+[editable path="Room03"]
+[editable path="Room04"]

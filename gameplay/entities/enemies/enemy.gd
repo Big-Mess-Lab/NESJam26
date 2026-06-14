@@ -21,7 +21,13 @@ func _ready():
 
 func _update_facing(dir: Vector2i):
 	facing = dir
-	sprite.play(Dir.anim_suffix(dir))
+	_update_sprites(dir)
+
+func _update_sprites(dir: Vector2i = facing):
+	if is_launching:
+		sprite.play("move_" + Dir.anim_suffix(dir))
+	else:
+		sprite.play("idle_" + Dir.anim_suffix(dir))
 
 func begin_turn():
 	is_launching = true
@@ -75,6 +81,7 @@ func advance_step(duration: float) -> StepResult:
 		if !is_launching:
 			break
 	
+	_update_sprites(facing)
 	return last_step_result
 
 func _pick_new_direction():

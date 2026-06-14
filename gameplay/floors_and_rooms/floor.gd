@@ -1,4 +1,5 @@
 extends Node2D
+class_name Floor
 
 # Nodes
 @export var active_spawn: Marker2D
@@ -78,3 +79,22 @@ func _transition(delta: float):
 		transition_steps_taken += 1
 	else:
 		_transition_end()
+
+func get_rooms() -> Array[Room]:
+	var rooms: Array[Room] = []
+	for child in get_children():
+		if child is Room:
+			rooms.append(child)
+	return rooms
+
+func snap_to_room(destination: Node):
+	if destination == null:
+		return
+	global_position = -destination.position   # same formula transition_to_room targets
+	transition_steps_taken = 0
+	transition_active = false
+	active_room.is_active = false
+	destination.is_active = true
+	active_room = destination
+	transition_destination_room = null
+	transition_done = true

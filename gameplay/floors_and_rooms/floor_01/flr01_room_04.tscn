@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://cfph0vyfudi3x"]
+[gd_scene format=4 uid="uid://o4cbo2mfdokm"]
 
 [ext_resource type="Script" uid="uid://cmq20rqm1bmpd" path="res://gameplay/floors_and_rooms/room.gd" id="1_kdbul"]
 [ext_resource type="TileSet" uid="uid://bybn273sigipb" path="res://gameplay/floors_and_rooms/tileset_world.tres" id="2_yev0y"]

@@ -3,6 +3,8 @@ extends CanvasLayer
 # Main subsections
 @onready var text_box: Panel = $TextBox
 @onready var top_hud: ColorRect = $TopHud
+@onready var transition_screen: ColorRect = $TransitionScreen
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 # Hearts
 @onready var texture_heart_1: TextureRect = $TopHud/MarginContainer/HBoxContainer/VBoxContainer2/HBoxLives/HBoxLivesIcons/TextureHeartContainer1/TextureHeart1
@@ -18,7 +20,12 @@ extends CanvasLayer
 @onready var text_field: RichTextLabel = $TextBox/MarginContainer/TextField
 @onready var continue_arrow: AnimatedSprite2D = $TextBox/MarginContainer/ContinueArrow
 
+# Screen transition stuff
+
 # Funcs
+func _ready():
+	animation_player.play("RESET")
+
 func update_hearts():
 	var hearts: int = Gameplay.protag.health
 	
@@ -73,3 +80,11 @@ func display_textbox(text: String, reveal_duration: float):
 func hide_textbox():
 	text_box.visible = false
 	continue_arrow.visible = false
+
+func transition_to_black():
+	animation_player.play("to_black")
+
+func transition_from_black():
+	animation_player.play("from_black")
+	await animation_player.animation_finished
+	animation_player.play("RESET")

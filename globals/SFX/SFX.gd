@@ -1,8 +1,8 @@
 extends Node
 
 # SFX containers
-@onready var elevator_ding: AudioStreamPlayer = $ElevatorDing
-@onready var elevator_door: AudioStreamPlayer = $ElevatorDoor
+@onready var elevator_ding: AudioStreamPlayer = $ElevatorDing					#
+@onready var elevator_door: AudioStreamPlayer = $ElevatorDoor					#
 @onready var elevator_error: AudioStreamPlayer = $ElevatorError
 @onready var elevator_running_loop: AudioStreamPlayer = $ElevatorRunningLoop
 @onready var enemy_death: AudioStreamPlayer = $EnemyDeath 						#

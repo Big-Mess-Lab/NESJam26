@@ -1,0 +1,50 @@
+[gd_scene format=4 uid="uid://00hbjecr6vbd"]
+
+[ext_resource type="TileSet" uid="uid://bybn273sigipb" path="res://gameplay/floors_and_rooms/tileset_world.tres" id="1_8n8qg"]
+[ext_resource type="Script" uid="uid://cmq20rqm1bmpd" path="res://gameplay/floors_and_rooms/room.gd" id="1_jkkoq"]
+[ext_resource type="PackedScene" uid="uid://chg8lgqq6pcoc" path="res://gameplay/portals/portal.tscn" id="2_84lvo"]
+[ext_resource type="PackedScene" uid="uid://d38c71snlkegd" path="res://gameplay/portals/destination.tscn" id="3_jkkoq"]
+
+[node name="RoomElevator02" type="Node2D" unique_id=20514657]
+script = ExtResource("1_jkkoq")
+
+[node name="Floors" type="TileMapLayer" parent="." unique_id=2066382465]
+tile_map_data = PackedByteArray("AAAHAAQAAAADABQAAAAHAAUAAAADABQAAAAHAAYAAAADABQAAAAHAAcAAAADABQAAAAIAAQAAAADABQAAAAIAAUAAAADABQAAAAIAAYAAAADABQAAAAIAAcAAAADABQAAAAJAAQAAAADABQAAAAJAAUAAAADABQAAAAJAAYAAAADABQAAAAJAAcAAAADABQAAAAKAAQAAAADABQAAAAKAAUAAAADABQAAAAKAAYAAAADABQAAAAKAAcAAAADABQAAAALAAQAAAADABQAAAALAAUAAAADABQAAAALAAYAAAADABQAAAALAAcAAAADABQAAAAGAAgAAAADABQAAAAHAAgAAAADABQAAAAIAAgAAAADABQAAAAJAAgAAAADABQAAAAKAAgAAAADABQAAAALAAgAAAADABQAAAAGAAQAAAADABQAAAAGAAUAAAADABQAAAAGAAYAAAADABQAAAAGAAcAAAADABQAAAAFAAQAAAADABQAAAAFAAUAAAADABQAAAAFAAYAAAADABQAAAAFAAcAAAADABQAAAAFAAgAAAADABQAAAAFAAkAAAADABQAAAAGAAkAAAADABQAAAAHAAkAAAADABQAAAAIAAkAAAADABQAAAAJAAkAAAADABQAAAAKAAkAAAADABQAAAALAAkAAAADABQAAAAFAAoAAAADABQAAAAGAAoAAAADABQAAAAHAAoAAAADABQAAAAIAAoAAAADABQAAAAJAAoAAAADABQAAAAKAAoAAAADABQAAAALAAoAAAADABQAAAAMAAUAAAAEABQAAwAMAAkAAAAEABQAAwAEAAUAAAAEABQAAgAEAAkAAAAEABQAAgA=")
+tile_set = ExtResource("1_8n8qg")
+collision_enabled = false
+
+[node name="Walls" type="TileMapLayer" parent="." unique_id=214665321]
+tile_map_data = PackedByteArray("AAAMAAoAAAACABMAAAAMAAgAAAACABMAAAAMAAYAAAACABMAAAAMAAQAAAACABMAAAAMAAMAAAACABIAAAALAAMAAAABABIAAAAKAAMAAAABABIAAAAJAAMAAAABABIAAAAIAAMAAAABABIAAAAHAAMAAAABABIAAAAGAAMAAAAOABMAAAAFAAMAAAANABMAAAAEAAoAAAAAABMAAAAEAAgAAAAAABMAAAAEAAYAAAAAABMAAAAEAAQAAAAAABMAAAAEAAMAAAAAABIAAAAMAAsAAAACABQAAAALAAsAAAABABQAAAAKAAsAAAABABQAAAAJAAsAAAABABQAAAAIAAsAAAABABQAAAAHAAsAAAABABQAAAAGAAsAAAABABQAAAAFAAsAAAABABQAAAAEAAsAAAAAABQAAAAEAAcAAAAAABMAAAAMAAcAAAACABMAAAALAAQAAQAAAAEAAAAFAAoAAQADAAEAAAAGAAoAAQADAAAAAAAKAAoAAQABAAMAAAALAAoAAQACAAMAAAAFAAYAAQABAAAAAAAFAAcAAQABAAEAAAA=")
+tile_set = ExtResource("1_8n8qg")
+
+[node name="Deco" type="TileMapLayer" parent="." unique_id=145784867]
+tile_map_data = PackedByteArray("AAAHAAMAAAAKABIAAAAIAAMAAAALABIAAAAJAAMAAAAMABIAAAAEAAQAAAAIABIAAAAEAAUAAAAIABMAAAAEAAYAAAAIABQAAAAEAAgAAAAIABIAAAAEAAkAAAAIABMAAAAEAAoAAAAIABQAAAAMAAQAAAAJABIAAAAMAAUAAAAJABMAAAAMAAYAAAAJABQAAAAMAAgAAAAJABIAAAAMAAkAAAAJABMAAAAMAAoAAAAJABQAAAALAAMAAQAAAAAAAAA=")
+tile_set = ExtResource("1_8n8qg")
+
+[node name="Enemies" type="Node2D" parent="." unique_id=265828465]
+
+[node name="Objects" type="Node2D" parent="." unique_id=374739152]
+
+[node name="Portal" parent="Objects" unique_id=2007719183 instance=ExtResource("2_84lvo")]
+position = Vector2(72, 88)
+
+[node name="Destination" parent="Objects" unique_id=1448722286 instance=ExtResource("3_jkkoq")]
+position = Vector2(88, 88)
+
+[node name="Portal2" parent="Objects" unique_id=1086932447 instance=ExtResource("2_84lvo")]
+position = Vector2(200, 88)
+
+[node name="Destination2" parent="Objects" unique_id=48804448 instance=ExtResource("3_jkkoq")]
+position = Vector2(184, 88)
+
+[node name="Portal3" parent="Objects" unique_id=173206018 instance=ExtResource("2_84lvo")]
+position = Vector2(72, 152)
+
+[node name="Destination3" parent="Objects" unique_id=406098315 instance=ExtResource("3_jkkoq")]
+position = Vector2(88, 152)
+
+[node name="Portal4" parent="Objects" unique_id=1521203416 instance=ExtResource("2_84lvo")]
+position = Vector2(200, 152)
+
+[node name="Destination4" parent="Objects" unique_id=291517146 instance=ExtResource("3_jkkoq")]
+position = Vector2(184, 152)

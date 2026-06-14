@@ -26,6 +26,10 @@ func _input(event: InputEvent):
 		return
 	if Gameplay.current_floor.transition_active:
 		return
+	if Gameplay.is_dying:
+		return
+	if Gameplay.using_elevator:
+		return
 	
 	if Cutscene.active:
 		if event.is_action_pressed("up"):
@@ -87,6 +91,7 @@ func _input(event: InputEvent):
 			_press_facing(Dir.RIGHT)
 	
 	if event.is_action_pressed("debug_0"):
+		take_damage(1, current_cell)
 		TurnManager.start_turn()
 	if event.is_action_pressed("debug_1"):
 		Cutscene.start_cutscene(1, 1)
@@ -200,7 +205,7 @@ func on_struck(strike):
 	else:
 		take_damage(1, strike["target_cell"])
 
-func _update_sprites():
+func _update_sprites(dir: Vector2i = facing):
 	var motion: String = "move" if is_launching else "idle"
 	var facing_suffix: String = Dir.anim_suffix(facing)
 	
@@ -240,11 +245,34 @@ func aim_mode_deactivate():
 	sword_sprite.use_parent_material = true
 
 func death(at_cell: Vector2i = Vector2i(-1, -1)):
+	Gameplay.is_dying = true
 	if at_cell == Vector2i(-1, -1):
 		at_cell = current_cell
 	Music.stop_all_music()
 	Music.jingle_death.play()
-	super.death(at_cell)
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	HUD.transition_to_black()
+	await get_tree().create_timer(1.2).timeout
+	
+	health = max_health
+	Gameplay.current_floor.snap_to_room(Gameplay.current_floor.elevator_room)
+	var elevator = Gameplay.current_floor.elevator_room
+	move_to_room(elevator, elevator.spawn_cell.global_position)
+	
+	for r in Gameplay.current_floor.get_rooms():
+		r.reset_on_player_death()
+	
+	HUD.update_hearts()
+	Gameplay.score = 0
+	HUD.update_score()
+	_update_facing(Dir.from_facing(Gameplay.current_floor.elevator_room.spawn_dir))
+	last_move_direction = Dir.from_facing(Gameplay.current_floor.elevator_room.spawn_dir)
+	HUD.transition_from_black()
+	await get_tree().create_timer(0.8).timeout
+	Music.play_gameplay_music(Music.track_elevator)
+	Gameplay.is_dying = false
 
 func _bumped():
 	SFX.player_bump.play()
