@@ -152,8 +152,15 @@ func _jab(target, sword_cell: Vector2i, dir: Vector2i):
 		"target_cell": sword_cell
 	}
 	target.on_struck(strike)
+	hit_boop(dir)
 	is_launching = false
 	TurnManager.start_turn()
+
+func advance_step(duration):
+	var result = super.advance_step(duration)
+	if result.outcome == GridEntity.Outcome.STRUCK_ENTITY:
+		hit_boop(result.strikes[0]["direction"])
+	return result
 
 func _toggle_show_sword():
 	show_sword = !show_sword
@@ -276,3 +283,17 @@ func death(at_cell: Vector2i = Vector2i(-1, -1)):
 
 func _bumped():
 	SFX.player_bump.play()
+
+func hit_boop(dir: Vector2i):
+	var offset: Vector2 = Vector2(dir) * 2.0
+	
+	var body_rest: Vector2 = Vector2.ZERO
+	var sword_rest: Vector2 = Vector2(attachment_offset) * 8.0
+	
+	protag_sprite.position = body_rest + offset
+	sword_sprite.position = sword_rest + offset
+	
+	var tween: Tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(protag_sprite, "position", body_rest, 0.1)
+	tween.tween_property(sword_sprite, "position", sword_rest, 0.1)

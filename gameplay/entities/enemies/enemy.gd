@@ -98,11 +98,15 @@ func death(at_cell: Vector2i = Vector2i(-1, -1)):
 	if at_cell == Vector2i(-1, -1):
 		at_cell = current_cell
 	SFX.enemy_death.play()
-	sprite.visible = false
 	is_launching = false
 	Gameplay.score += points_on_death
 	HUD.update_score()
 	super.death(at_cell)
+	
+	
+	sprite.play("hit_" + Dir.anim_suffix(facing))
+	await get_tree().create_timer(0.3).timeout
+	sprite.visible = false
 	if !respawn_on_reenter and !respawn_on_player_death:
 		queue_free()
 

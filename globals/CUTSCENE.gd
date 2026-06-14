@@ -61,6 +61,8 @@ func _input(event: InputEvent):
 		return
 	if does_protag_exist():
 		return
+	if HUD.blipping:
+		return
 	
 	if event.is_action_pressed("up"):
 		SFX.text_continue.play()

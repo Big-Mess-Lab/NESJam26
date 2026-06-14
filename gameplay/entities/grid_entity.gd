@@ -127,6 +127,7 @@ func death(at_cell: Vector2i = Vector2i(-1, -1)):
 	if at_cell == Vector2i(-1, -1):
 		at_cell = current_cell
 	VFXPool.play("explo", at_cell, room)
+	
 	_unregister_self()
 	is_alive = false
 

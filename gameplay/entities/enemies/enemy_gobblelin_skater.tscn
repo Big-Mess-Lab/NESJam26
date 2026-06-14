@@ -282,6 +282,5 @@ points_on_death = 275
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1856279220]
 sprite_frames = SubResource("SpriteFrames_p3u1o")
-animation = &"move_up"
-frame_progress = 0.6195724
+animation = &"hit_up"
 offset = Vector2(0, -8)

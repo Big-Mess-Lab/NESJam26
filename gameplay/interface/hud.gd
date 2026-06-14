@@ -72,8 +72,9 @@ func display_textbox(text: String, reveal_duration: float, speaker: AudioStreamP
 	continue_arrow.visible = false
 	
 	# SFX
-	blipping = true
-	blip_sfx_loop(speaker)
+	if !blipping:
+		blipping = true
+		blip_sfx_loop(speaker)
 	
 	# Make visible, start showing text
 	text_box.visible = true
