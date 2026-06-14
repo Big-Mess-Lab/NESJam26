@@ -3,7 +3,7 @@ extends Node
 # SFX containers
 @onready var elevator_ding: AudioStreamPlayer = $ElevatorDing					#
 @onready var elevator_door: AudioStreamPlayer = $ElevatorDoor					#
-@onready var elevator_error: AudioStreamPlayer = $ElevatorError
+@onready var elevator_error: AudioStreamPlayer = $ElevatorError					#
 @onready var elevator_running_loop: AudioStreamPlayer = $ElevatorRunningLoop
 @onready var enemy_death: AudioStreamPlayer = $EnemyDeath 						#
 @onready var pickup: AudioStreamPlayer = $Pickup 								#
@@ -13,10 +13,10 @@ extends Node
 @onready var sword_sheath: AudioStreamPlayer = $SwordSheath 					#
 @onready var sword_turn: AudioStreamPlayer = $SwordTurn 						#
 @onready var sword_unsheath: AudioStreamPlayer = $SwordUnsheath 				#
-@onready var text_blip_generic: AudioStreamPlayer = $TextBlipGeneric
-@onready var text_blip_goblin: AudioStreamPlayer = $TextBlipGoblin
-@onready var text_blip_knight: AudioStreamPlayer = $TextBlipKnight
-@onready var text_blip_wizard: AudioStreamPlayer = $TextBlipWizard
+@onready var text_blip_generic: AudioStreamPlayer = $TextBlipGeneric			#
+@onready var text_blip_goblin: AudioStreamPlayer = $TextBlipGoblin				#
+@onready var text_blip_knight: AudioStreamPlayer = $TextBlipKnight				#
+@onready var text_blip_wizard: AudioStreamPlayer = $TextBlipWizard				#
 @onready var text_continue: AudioStreamPlayer = $TextContinue					#
 @onready var turn_launch: AudioStreamPlayer = $TurnLaunch						#
 @onready var turn_without_player: AudioStreamPlayer = $TurnWithoutPlayer		#

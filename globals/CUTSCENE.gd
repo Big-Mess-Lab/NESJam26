@@ -48,6 +48,7 @@ func end_cutscene(number: int):
 		1:
 			var inst = FLOOR_01.instantiate()
 			get_tree().root.get_node("Main").add_child(inst)
+			Music.play_gameplay_music(Music.track_elevator)
 
 func does_protag_exist() -> bool:
 	if Gameplay.protag != null and is_instance_valid(Gameplay.protag):

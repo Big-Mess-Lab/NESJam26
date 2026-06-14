@@ -54,9 +54,14 @@ func move_to_floor(floor_num: int):
 	if !using_elevator:
 		return
 	
+	Music.stop_all_music()
+	
 	# Fade to black
 	HUD.transition_to_black()
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
+	SFX.elevator_running_loop.play()
+	await get_tree().create_timer(1.0).timeout
+	
 	# Select new floor
 	var new_floor_scene
 	
@@ -76,6 +81,14 @@ func move_to_floor(floor_num: int):
 	# Fade from black
 	protag.protag_sprite.visible = true
 	protag.sword_sprite.visible = protag.show_sword
+	
+	SFX.elevator_running_loop.stop()
+	await get_tree().create_timer(0.2).timeout
+	SFX.elevator_ding.play()
+	await get_tree().create_timer(0.5).timeout
+	SFX.elevator_door.play()
+	await get_tree().create_timer(0.75).timeout
 	HUD.transition_from_black()
 	await get_tree().create_timer(1.2).timeout
 	using_elevator = false
+	Music.play_gameplay_music(Music.track_elevator)

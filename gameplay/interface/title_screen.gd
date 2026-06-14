@@ -66,5 +66,5 @@ func start_game():
 	
 	# Run first cutscene
 	await get_tree().create_timer(0.5).timeout
-	Cutscene.start_cutscene(1, 0.0075)
+	Cutscene.start_cutscene(1, 0.75)
 	queue_free()

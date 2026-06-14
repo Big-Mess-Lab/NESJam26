@@ -33,7 +33,6 @@ func _ready():
 	# Init elevator room if not set, play music
 	if elevator_room == null:
 		elevator_room = active_room
-	Music.play_gameplay_music(Music.track_elevator)
 	
 	# Dirty fixes, this is to show the hud when we're jumping into the game - should be dealt with by a gamestate handler
 	HUD.top_hud.visible = true

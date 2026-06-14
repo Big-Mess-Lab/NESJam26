@@ -20,7 +20,12 @@ extends CanvasLayer
 @onready var text_field: RichTextLabel = $TextBox/MarginContainer/TextField
 @onready var continue_arrow: AnimatedSprite2D = $TextBox/MarginContainer/ContinueArrow
 
-# Screen transition stuff
+# SFX for textbox
+@onready var blip_knight: AudioStreamPlayer = SFX.text_blip_knight
+@onready var blip_generic: AudioStreamPlayer = SFX.text_blip_generic
+@onready var blip_wizard: AudioStreamPlayer = SFX.text_blip_wizard
+@onready var blip_goblin: AudioStreamPlayer = SFX.text_blip_goblin
+var blipping: bool = false
 
 # Funcs
 func _ready():
@@ -60,11 +65,15 @@ func update_score():
 func update_keycards():
 	text_keycard_value.text = str(Gameplay.keycards)
 
-func display_textbox(text: String, reveal_duration: float):
+func display_textbox(text: String, reveal_duration: float, speaker: AudioStreamPlayer = SFX.text_blip_generic):
 	# Initialize nodes
 	text_field.visible_ratio = 0.0
 	text_field.text = text
 	continue_arrow.visible = false
+	
+	# SFX
+	blipping = true
+	blip_sfx_loop(speaker)
 	
 	# Make visible, start showing text
 	text_box.visible = true
@@ -72,6 +81,7 @@ func display_textbox(text: String, reveal_duration: float):
 	tween.tween_property(text_field, "visible_ratio", 1.0, reveal_duration)
 	# loop sound here
 	await tween.finished
+	blipping = false
 	
 	# Display continue arrow on end, expect input
 	continue_arrow.visible = true
@@ -88,3 +98,8 @@ func transition_from_black():
 	animation_player.play("from_black")
 	await animation_player.animation_finished
 	animation_player.play("RESET")
+
+func blip_sfx_loop(speaker: AudioStreamPlayer):
+	while blipping:
+		speaker.play()
+		await get_tree().create_timer(randf_range(0.04, 0.09)).timeout
