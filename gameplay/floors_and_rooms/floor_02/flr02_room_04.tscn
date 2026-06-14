@@ -19,6 +19,7 @@ tile_map_data = PackedByteArray("AAAIAA4AAAACAAIAAAAMAAcAAAACAAIAAAAFAAcAAAACAAI
 tile_set = ExtResource("2_yev0y")
 
 [node name="Deco" type="TileMapLayer" parent="." unique_id=1392931072]
+tile_map_data = PackedByteArray("AAAAAAQAAAAIAAAAAAAAAAUAAAAIAAEAAAAAAAYAAAAIAAIAAAA=")
 tile_set = ExtResource("2_yev0y")
 
 [node name="Objects" type="Node2D" parent="." unique_id=365833505]
